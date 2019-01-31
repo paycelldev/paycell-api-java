@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="dto" />
+	<composite:attribute name="preferRegisteredCard" />
+	<composite:attribute name="threeDSecureActive" />
+</composite:interface>
+
+<composite:implementation>
+	<h:outputStylesheet library="css" name="provisionForMarketPlace.css" />
+	<h:outputScript library="js" name="provisionForMarketPlace.js"
+		target="head" />
+	<p:panel id="provisionForMarketPlacePanel" styleClass="noborder">
+		<p:panelGrid columns="2" styleClass="alignedTop">
+
+			<p:panelGrid columns="2">
+				<h:outputLabel for="@next" value="referenceNumber" />
+				<p:inputText readonly="true" value="#{cc.attrs.dto.referenceNumber}" />
+
+				<h:outputLabel for="@next" value="threeDSessionId" />
+				<p:inputText readonly="true" value="#{cc.attrs.dto.threeDSessionId}" />
+
+				<h:outputLabel for="@next" value="acquirerBankCode" />
+				<p:inputText value="#{cc.attrs.dto.acquirerBankCode}" />
+
+				<h:outputLabel for="@next" value="amount" />
+				<p:inputText value="#{cc.attrs.dto.amount}" />
+
+				<h:outputLabel for="@next" value="currency" />
+				<p:inputText value="#{cc.attrs.dto.currency}" />
+
+				<h:outputLabel for="@next" value="installmentCount" />
+				<p:inputText value="#{cc.attrs.dto.installmentCount}" />
+
+				<h:outputLabel for="@next" value="paymentType" />
+				<p:inputText value="#{cc.attrs.dto.paymentType}" />
+
+				<h:outputLabel for="@next" value="pin" />
+				<p:inputText value="#{cc.attrs.dto.pin}" />
+
+				<h:outputLabel for="@next" value="pointAmount" />
+				<p:inputText value="#{cc.attrs.dto.pointAmount}" />
+			</p:panelGrid>
+
+			<p:panel>
+				<p:dataTable id="extraParameterDatatable"
+					value="#{cc.attrs.dto.extraParameterList}" var="extraParameterItem"
+					rowKey="#{extraParameterItem.id}">
+					<p:column headerText="key">
+						<p:inputText value="#{extraParameterItem.key}" style="width:100%;" />
+					</p:column>
+					<p:column headerText="value">
+						<p:inputText value="#{extraParameterItem.value}"
+							style="width:100%;" />
+					</p:column>
+					<p:column style="width:200px;">
+						<f:facet name="header">
+							<p:commandButton value="Add Extra Parameter" style="width:100%"
+								action="#{cc.attrs.dto.addExtraParameter}"
+								update="extraParameterDatatable" />
+						</f:facet>
+						<p:commandButton value="Delete" style="width:100%;"
+							action="#{cc.attrs.dto.deleteExtraParameter(extraParameterItem.id)}"
+							update="extraParameterDatatable" />
+					</p:column>
+				</p:dataTable>
+
+				<p:dataTable id="subMerchantDatatable"
+					value="#{cc.attrs.dto.subMerchantList}" var="subMerchantItem"
+					rowKey="#{subMerchantItem.id}">
+					<p:column headerText="subMerchantKey">
+						<p:inputText value="#{subMerchantItem.subMerchantKey}"
+							style="width:100%;" />
+					</p:column>
+					<p:column headerText="subMerchantPrice">
+						<p:inputText value="#{subMerchantItem.subMerchantPrice}"
+							style="width:100%;" />
+					</p:column>
+					<p:column style="width:200px;">
+						<f:facet name="header">
+							<p:commandButton value="Add SubMerchant" style="width:100%;"
+								action="#{cc.attrs.dto.addSubMerchant}"
+								update="subMerchantDatatable" />
+						</f:facet>
+						<p:commandButton value="Delete" style="width:100%;"
+							action="#{cc.attrs.dto.deleteSubMerchant(subMerchantItem.id)}"
+							update="subMerchantDatatable" />
+					</p:column>
+				</p:dataTable>
+
+				<p:dataTable id="customerEMailDatatable"
+					value="#{cc.attrs.dto.customerEMailList}" var="customerEMailItem"
+					rowKey="#{customerEMailItem.id}">
+					<p:column headerText="eMail">
+						<p:inputText value="#{customerEMailItem.eMail}"
+							style="width:100%;" />
+					</p:column>
+					<p:column style="width:200px;">
+						<f:facet name="header">
+							<p:commandButton value="Add customerEMail" style="width:100%;"
+								action="#{cc.attrs.dto.addCustomerEMail}"
+								update="customerEMailDatatable" />
+						</f:facet>
+						<p:commandButton value="Delete" style="width:100%;"
+							action="#{cc.attrs.dto.deleteCustomerEMail(customerEMailItem.id)}"
+							update="customerEMailDatatable" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</p:panelGrid>
+
+		<p:panel>
+			<p:commandButton value="Send Provision"
+				rendered="#{not cc.attrs.threeDSecureActive}"
+				onclick="sendProvisionForMarketPlaceHandler(false,#{cc.attrs.preferRegisteredCard});"
+				update="provisionForMarketPlacePanel" />
+			<p:remoteCommand name="sendProvisionForMarketPlace"
+				action="#{cc.attrs.dto.sendProvisionForMarketPlace}"
+				update="provisionForMarketPlacePanel" />
+
+			<p:commandButton value="Send Provision"
+				rendered="#{cc.attrs.threeDSecureActive}"
+				onclick="window.threeDSecurePage=window.open('_blank','_blank');sendProvisionForMarketPlaceHandler(true,#{cc.attrs.preferRegisteredCard});" />
+			<p:remoteCommand name="sendProvisionForMarketPlaceThreeD"
+				action="#{cc.attrs.dto.sendProvisionForMarketPlaceThreeD}"
+				oncomplete="listenProvisionForMarketPlaceThreeD()"
+				update="provisionForMarketPlacePanel" />
+			<p:remoteCommand name="listenProvisionForMarketPlaceThreeD"
+				action="#{cc.attrs.dto.listenProvisionForMarketPlaceThreeD}"
+				update="provisionForMarketPlacePanel" />
+		</p:panel>
+		<p:panel rendered="#{cc.attrs.preferRegisteredCard}">
+			<h:outputLabel for="@next" value="CVC" />
+			<p:inputMask widgetVar="provisionForMarketPlace.cvc" mask="999" />
+		</p:panel>
+
+
+
+	</p:panel>
+</composite:implementation>
+</html>

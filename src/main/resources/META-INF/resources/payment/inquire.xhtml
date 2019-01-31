@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="dto" />
+</composite:interface>
+
+<composite:implementation>
+	<p:panel id="inquirePanel" headerText="Inquire">
+		<p:panelGrid columns="2">
+			<h:outputLabel for="@next" value="OriginalReferenceNumber" />
+			<p:inputText value="#{cc.attrs.dto.originalReferenceNumber}">
+				<p:ajax event="blur" listener="#{cc.attrs.dto.inquire}"
+					process="@this" update="inquirePanel" />
+			</p:inputText>
+
+			<h:outputLabel for="@next" value="orderId" />
+			<p:inputText readonly="true" value="#{cc.attrs.dto.orderId}" />
+
+			<h:outputLabel for="@next" value="acquirerBankCode" />
+			<p:inputText readonly="true" value="#{cc.attrs.dto.acquirerBankCode}" />
+
+			<h:outputLabel for="@next" value="status" />
+			<p:inputText readonly="true" value="#{cc.attrs.dto.status}" />
+
+		</p:panelGrid>
+
+		<p:dataTable id="provisionDatatable"
+			value="#{cc.attrs.dto.provisionList}" var="provisionItem">
+			<p:column headerText="provisionType">
+				<h:outputText value="#{provisionItem.provisionType}" />
+			</p:column>
+			<p:column headerText="transactionId">
+				<h:outputText value="#{provisionItem.transactionId}" />
+			</p:column>
+			<p:column headerText="amount">
+				<h:outputText value="#{provisionItem.amount}" />
+			</p:column>
+			<p:column headerText="approvalCode">
+				<h:outputText value="#{provisionItem.approvalCode}" />
+			</p:column>
+			<p:column headerText="dateTime">
+				<h:outputText value="#{provisionItem.dateTime}" />
+			</p:column>
+			<p:column headerText="reconciliationDate">
+				<h:outputText value="#{provisionItem.reconciliationDate}" />
+			</p:column>
+			<p:column headerText="responseCode">
+				<h:outputText value="#{provisionItem.responseCode}" />
+			</p:column>
+			<p:column headerText="responseDescription">
+				<h:outputText value="#{provisionItem.responseDescription}" />
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+</composite:implementation>
+</html>

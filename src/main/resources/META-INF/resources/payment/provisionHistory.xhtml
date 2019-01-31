@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="dto" />
+</composite:interface>
+
+<composite:implementation>
+	<p:panel id="provisionHistoryPanel" headerText="ProvisionHistory">
+		<p:panelGrid columns="2">
+			<h:outputLabel for="@next" value="ReconciliationDate" />
+			<p:inputText value="#{cc.attrs.dto.reconciliationDate}">
+				<p:ajax event="blur"
+					listener="#{cc.attrs.dto.retrieveProvisionHistory}" process="@this"
+					update="provisionHistoryPanel" />
+			</p:inputText>
+		</p:panelGrid>
+
+		<p:dataTable id="transactionDatatable"
+			value="#{cc.attrs.dto.transactionList}" var="transactionItem"
+			paginator="true" paginatorPosition="bottom"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15" rows="10" scrollable="true" scrollWidth="98%">
+			<p:column headerText="transactionDateTime" style="width:200px">
+				<h:outputText value="#{transactionItem.transactionDateTime}" />
+			</p:column>
+			<p:column headerText="orderId" style="width:200px">
+				<h:outputText value="#{transactionItem.orderId}" />
+			</p:column>
+			<p:column headerText="acquirerBankCode" style="width:150px">
+				<h:outputText value="#{transactionItem.acquirerBankCode}" />
+			</p:column>
+			<p:column headerText="approvalCode" style="width:150px">
+				<h:outputText value="#{transactionItem.approvalCode}" />
+			</p:column>
+			<p:column headerText="issuerBankCode" style="width:150px">
+				<h:outputText value="#{transactionItem.issuerBankCode}" />
+			</p:column>
+			<p:column headerText="amount" style="width:150px">
+				<h:outputText value="#{transactionItem.amount}" />
+			</p:column>
+			<p:column headerText="netAmount" style="width:150px">
+				<h:outputText value="#{transactionItem.netAmount}" />
+			</p:column>
+			<p:column headerText="referenceNumber" style="width:200px">
+				<h:outputText value="#{transactionItem.referenceNumber}" />
+			</p:column>
+			<p:column headerText="transactionId" style="width:200px">
+				<h:outputText value="#{transactionItem.transactionId}" />
+			</p:column>
+			<p:column headerText="transactionParams" style="width:200px">
+				<h:outputText value="#{transactionItem.transactionParams}" />
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+</composite:implementation>
+</html>

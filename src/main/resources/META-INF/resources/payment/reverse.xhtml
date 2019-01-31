@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="dto" />
+</composite:interface>
+
+<composite:implementation>
+	<p:panel id="reversePanel" headerText="Reverse">
+		<p:panelGrid columns="2">
+			<h:outputLabel for="@next" value="OriginalReferenceNumber" />
+			<p:inputText value="#{cc.attrs.dto.originalReferenceNumber}" />
+
+			<h:outputLabel for="@next" value="ReferenceNumber" />
+			<p:inputText readonly="true" value="#{cc.attrs.dto.referenceNumber}" />
+		</p:panelGrid>
+		<p:commandButton value="Reverse" action="#{cc.attrs.dto.reverse}" update="@form"/>
+	</p:panel>
+</composite:implementation>
+</html>

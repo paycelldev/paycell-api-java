@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="dto" />
+</composite:interface>
+
+<composite:implementation>
+	<p:panel id="summaryReconciliationPanel"
+		headerText="SummaryReconciliation">
+		<p:panelGrid columns="4">
+			<h:outputLabel for="@next" value="ReconciliationDate" />
+			<p:inputText value="#{cc.attrs.dto.reconciliationDate}" />
+
+			<h:outputLabel for="@next" value="ReconciliationResult" />
+			<p:inputText readonly="true"
+				value="#{cc.attrs.dto.reconciliationResult}" />
+
+			<h:outputLabel for="@next" value="TotalSaleAmount" />
+			<p:inputText value="#{cc.attrs.dto.totalSaleAmount}" />
+
+			<h:outputLabel for="@next" value="ResponseTotalSaleAmount" />
+			<p:inputText readonly="true"
+				value="#{cc.attrs.dto.responseTotalSaleAmount}" />
+
+			<h:outputLabel for="@next" value="TotalReverseAmount" />
+			<p:inputText value="#{cc.attrs.dto.totalReverseAmount}" />
+
+			<h:outputLabel for="@next" value="ResponseTotalReverseAmount" />
+			<p:inputText readonly="true"
+				value="#{cc.attrs.dto.responseTotalReverseAmount}" />
+
+			<h:outputLabel for="@next" value="TotalRefundAmount" />
+			<p:inputText value="#{cc.attrs.dto.totalRefundAmount}" />
+
+			<h:outputLabel for="@next" value="ResponseTotalRefundAmount" />
+			<p:inputText readonly="true"
+				value="#{cc.attrs.dto.responseTotalRefundAmount}" />
+
+			<h:outputLabel for="@next" value="TotalSaleCount" />
+			<p:inputText value="#{cc.attrs.dto.totalSaleCount}" />
+
+			<h:outputLabel for="@next" value="ResponseTotalSaleCount" />
+			<p:inputText readonly="true"
+				value="#{cc.attrs.dto.responseTotalSaleCount}" />
+
+			<h:outputLabel for="@next" value="TotalReverseCount" />
+			<p:inputText value="#{cc.attrs.dto.totalReverseCount}" />
+
+			<h:outputLabel for="@next" value="ResponseTotalReverseCount" />
+			<p:inputText readonly="true"
+				value="#{cc.attrs.dto.responseTotalReverseCount}" />
+
+			<h:outputLabel for="@next" value="TotalRefundCount" />
+			<p:inputText value="#{cc.attrs.dto.totalRefundCount}" />
+
+			<h:outputLabel for="@next" value="ResponseTotalRefundCount" />
+			<p:inputText readonly="true"
+				value="#{cc.attrs.dto.responseTotalRefundCount}" />
+
+		</p:panelGrid>
+		<p:commandButton value="Summary Reconciliation"
+			action="#{cc.attrs.dto.summaryReconciliation}" process="summaryReconciliationPanel" update="summaryReconciliationPanel" />
+	</p:panel>
+</composite:implementation>
+</html>

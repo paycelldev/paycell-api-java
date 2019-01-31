@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="dto" />
+	<composite:attribute name="threeDSecureActive" />
+</composite:interface>
+<composite:implementation>
+	<h:outputScript library="js" name="threeDSecure.js" target="head" />
+	<p:panel id="queryPanel" header="Card List">
+		<p:panelGrid columns="2">
+			<h:outputLabel for="@next" value="Msisdn:" />
+			<p:inputMask mask="+(99)999-999-99-99" value="#{cc.attrs.dto.msisdn}">
+				<p:ajax event="blur" listener="#{cc.attrs.dto.queryCards}"
+					update="@form" />
+			</p:inputMask>
+
+
+		</p:panelGrid>
+		<p:panelGrid rendered="#{cc.attrs.threeDSecureActive}" columns="2">
+			<h:outputLabel for="@next" value="ThreeDSessionId:" />
+			<p:inputText readonly="true" value="#{cc.attrs.dto.threeDSessionId}" />
+		</p:panelGrid>
+
+
+		<p:panel header="Registered Cards"
+			rendered="#{cc.attrs.dto.msisdn != null}">
+
+			<p:dataTable rendered="#{not cc.attrs.dto.useCustomCard}"
+				id="cardDataTable" value="#{cc.attrs.dto.cards}" var="cardItem"
+				rowKey="#{cardItem.cardId}" selection="#{cc.attrs.dto.selectedCard}"
+				selectionMode="single">
+
+				<p:ajax event="rowSelect" process="@this" update="@form" />
+				<p:ajax event="rowUnselect" process="@this" update="@form" />
+
+				<p:column headerText="cardId">
+					<h:outputText value="#{cardItem.cardId}" />
+				</p:column>
+				<p:column headerText="maskedCardNo">
+					<h:outputText value="#{cardItem.maskedCardNo}" />
+				</p:column>
+				<p:column headerText="alias">
+					<h:outputText rendered="#{not cardItem.editMode}"
+						value="#{cardItem.alias}" />
+					<p:inputText rendered="#{cardItem.editMode}"
+						value="#{cardItem.alias}" />
+				</p:column>
+				<p:column headerText="cardBrand">
+					<h:outputText value="#{cardItem.cardBrand}" />
+				</p:column>
+				<p:column headerText="isDefault">
+					<h:outputText rendered="#{not cardItem.editMode}"
+						value="#{cardItem.isDefault}" />
+					<p:inputText rendered="#{cardItem.editMode}"
+						value="#{cardItem.isDefault}" />
+				</p:column>
+				<p:column headerText="isExpired">
+					<h:outputText value="#{cardItem.isExpired}" />
+				</p:column>
+				<p:column headerText="showEulaId">
+					<h:outputText value="#{cardItem.showEulaId}" />
+				</p:column>
+				<p:column headerText="isThreeDValidated">
+					<h:outputText value="#{cardItem.isThreeDValidated}" />
+				</p:column>
+				<p:column headerText="isOTPValidated">
+					<h:outputText value="#{cardItem.isOTPValidated}" />
+				</p:column>
+				<p:column headerText="activationDate">
+					<h:outputText value="#{cardItem.activationDate}" />
+				</p:column>
+				<p:column>
+					<p:commandButton value="Edit" rendered="#{not cardItem.editMode}"
+						action="#{cardItem.setEditMode(true)}" update="@form" />
+					<p:commandButton
+						rendered="#{cardItem.editMode and not cc.attrs.threeDSecureActive}"
+						value="Update" action="#{cc.attrs.dto.updateCard(cardItem)}"
+						update="cardDataTable" />
+					<p:commandButton
+						rendered="#{cardItem.editMode and cc.attrs.threeDSecureActive}"
+						value="Update" action="#{cc.attrs.dto.updateCardThreeD(cardItem)}"
+						onclick="window.threeDSecurePage=window.open('_blank', '_blank');"
+						oncomplete="listenUpdateCardThreeD()" update="cardDataTable" />
+
+					<p:remoteCommand
+						rendered="#{cardItem.editMode and cc.attrs.threeDSecureActive}"
+						name="listenUpdateCardThreeD"
+						action="#{cc.attrs.dto.listenUpdateCardThreeD(cardItem)}"
+						update="cardDataTable" />
+				</p:column>
+				<p:column>
+					<p:commandButton value="Delete"
+						action="#{cc.attrs.dto.deleteCard(cardItem)}"
+						update="cardDataTable" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+		<p:panel id="customCardPanel" header="Custom Card"
+			rendered="#{cc.attrs.dto.msisdn != null}">
+			<p:panelGrid columns="3">
+				<h:outputLabel for="@next" value="creditCardNo" />
+				<p:inputMask widgetVar="custom.creditCardNo"
+					mask="9999 9999 9999 9999"
+					value="#{cc.attrs.dto.customCard.creditCardNo}">
+				</p:inputMask>
+				<h:outputText value="#{cc.attrs.dto.customCard.creditCardNo}" />
+
+				<h:outputLabel for="@next" value="expireDate" />
+				<p:inputMask widgetVar="custom.expireDate" mask="99/99"
+					value="#{cc.attrs.dto.customCard.expireDate}">
+				</p:inputMask>
+				<h:outputText value="#{cc.attrs.dto.customCard.expireDate}" />
+
+				<h:outputLabel for="@next" value="cvcNo" />
+				<p:inputMask widgetVar="custom.cvcNo" mask="999"
+					value="#{cc.attrs.dto.customCard.cvcNo}">
+				</p:inputMask>
+				<h:outputText value="#{cc.attrs.dto.customCard.cvcNo}" />
+			</p:panelGrid>
+			<p:commandButton value="Choose"
+				action="#{cc.attrs.dto.setSelectedCard(null)}"
+				process="customCardPanel" update="@form" />
+		</p:panel>
+	</p:panel>
+</composite:implementation>
+</html>

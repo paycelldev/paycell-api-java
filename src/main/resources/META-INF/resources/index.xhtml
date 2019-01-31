@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:card="http://java.sun.com/jsf/composite/card"
+	xmlns:payment="http://java.sun.com/jsf/composite/payment">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Paycell Web API Client</title>
+
+</h:head>
+<h:body>
+	<h:form prependId="false" action="#">
+		<p:growl showDetail="true">
+			<p:autoUpdate />
+		</p:growl>
+		<h:panelGrid columns="4">
+			<p:outputLabel for="@next" value="Connection Method:" />
+			<p:selectOneRadio id="console"
+				value="#{cardViewBean.connectionMethod}">
+				<p:ajax process="@this" />
+				<f:selectItem itemLabel="REST" itemValue="REST" />
+				<f:selectItem itemLabel="SOAP" itemValue="SOAP" />
+			</p:selectOneRadio>
+
+			<p:outputLabel for="@next" value="3D Secure Active:" />
+			<p:inputSwitch value="#{cardViewBean.threeDSecureActive}">
+				<p:ajax update="@form" />
+			</p:inputSwitch>
+		</h:panelGrid>
+		<p:accordionPanel prependId="false">
+			<p:ajax event="tabChange" />
+			<p:tab id="cardListTab" title="Card List">
+				<card:query dto="#{cardViewBean.cardQueryViewDto}"
+					threeDSecureActive="#{cardViewBean.threeDSecureActive}" />
+			</p:tab>
+			<p:tab title="Add Card" rendered="#{cardViewBean.isAccountSet()}">
+				<card:register dto="#{cardViewBean.cardRegisterViewDto}"
+					threeDSecureActive="#{cardViewBean.threeDSecureActive}"
+					update="cardListTab" />
+			</p:tab>
+			<p:tab title="Provision"
+				rendered="#{cardViewBean.isPaymentMethodAvailable()}">
+				<payment:provision dto="#{cardViewBean.provisionViewDto}"
+					threeDSecureActive="#{cardViewBean.threeDSecureActive}"
+					preferRegisteredCard="#{cardViewBean.isRegisteredCardAvailable()}" />
+			</p:tab>
+			<p:tab title="Provision For Market Place"
+				rendered="#{cardViewBean.isPaymentMethodAvailable()}">
+				<payment:provisionForMarketPlace
+					threeDSecureActive="#{cardViewBean.threeDSecureActive}"
+					dto="#{cardViewBean.provisionForMarketPlaceViewDto}"
+					preferRegisteredCard="#{cardViewBean.isRegisteredCardAvailable()}" />
+			</p:tab>
+			<p:tab title="Inquire" rendered="#{cardViewBean.isAccountSet()}">
+				<payment:inquire dto="#{cardViewBean.inquireViewDto}" />
+			</p:tab>
+			<p:tab title="Reverse" rendered="#{cardViewBean.isAccountSet()}">
+				<payment:reverse dto="#{cardViewBean.reverseViewDto}" />
+			</p:tab>
+			<p:tab title="Refund" rendered="#{cardViewBean.isAccountSet()}">
+				<payment:refund dto="#{cardViewBean.refundViewDto}" />
+			</p:tab>
+			<p:tab title="Summary Reconciliation">
+				<payment:summaryReconciliation
+					dto="#{cardViewBean.summaryReconciliationViewDto}" />
+			</p:tab>
+			<p:tab title="Provision History">
+				<payment:provisionHistory
+					dto="#{cardViewBean.provisionHistoryViewDto}" />
+			</p:tab>
+		</p:accordionPanel>
+	</h:form>
+
+	<script>
+		$(document).ready(function() {
+			$(":input").keydown(function(event) {
+				if (event.keyCode == 13) {
+					return false;
+				}
+			});
+		});
+	</script>
+</h:body>
+</h:html>

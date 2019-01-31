@@ -1,0 +1,7 @@
+.alignedTop td {
+	vertical-align:top;
+}
+
+.noborder div{
+	border:0px !important;
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="dto" />
+	<composite:attribute name="preferRegisteredCard" />
+	<composite:attribute name="threeDSecureActive" />
+</composite:interface>
+
+<composite:implementation>
+	<h:outputScript library="js" name="threeDSecure.js" target="head" />
+	<h:outputScript library="js" name="provision.js" target="head" />
+	<p:panel id="provisionPanel" header="Provision">
+		<p:panelGrid columns="2">
+			<h:outputLabel for="@next" value="referenceNumber" />
+			<p:inputText readonly="true" value="#{cc.attrs.dto.referenceNumber}" />
+
+			<h:outputLabel for="@next" value="threeDSessionId" />
+			<p:inputText readonly="true" value="#{cc.attrs.dto.threeDSessionId}" />
+
+			<h:outputLabel for="@next" value="acquirerBankCode" />
+			<p:inputText value="#{cc.attrs.dto.acquirerBankCode}" />
+
+			<h:outputLabel for="@next" value="amount" />
+			<p:inputText value="#{cc.attrs.dto.amount}" />
+
+			<h:outputLabel for="@next" value="currency" />
+			<p:inputText value="#{cc.attrs.dto.currency}" />
+
+			<h:outputLabel for="@next" value="installmentCount" />
+			<p:inputText value="#{cc.attrs.dto.installmentCount}" />
+
+			<h:outputLabel for="@next" value="paymentType" />
+			<p:inputText value="#{cc.attrs.dto.paymentType}" />
+
+			<h:outputLabel for="@next" value="pin" />
+			<p:inputText value="#{cc.attrs.dto.pin}" />
+
+			<h:outputLabel for="@next" value="pointAmount" />
+			<p:inputText value="#{cc.attrs.dto.pointAmount}" />
+
+		</p:panelGrid>
+
+		<p:panel>
+			<p:commandButton rendered="#{not cc.attrs.threeDSecureActive}"
+				value="Send Provision"
+				onclick="sendProvisionHandler(false,#{cc.attrs.preferRegisteredCard});"
+				update="provisionPanel" />
+			<p:remoteCommand name="sendProvision"
+				action="#{cc.attrs.dto.sendProvision}" update="provisionPanel" />
+
+			<p:commandButton rendered="#{cc.attrs.threeDSecureActive}"
+				value="Send Provision" update="provisionPanel"
+				onclick="window.threeDSecurePage=window.open('_blank','_blank');sendProvisionHandler(true,#{cc.attrs.preferRegisteredCard});" />
+			<p:remoteCommand name="sendProvisionThreeD"
+				action="#{cc.attrs.dto.sendProvisionThreeD}"
+				oncomplete="listenProvisionThreeD()" update="provisionPanel" />
+			<p:remoteCommand name="listenProvisionThreeD"
+				action="#{cc.attrs.dto.listenProvisionThreeD}"
+				update="provisionPanel" />
+		</p:panel>
+		<p:panel rendered="#{cc.attrs.preferRegisteredCard}">
+			<h:outputLabel for="@next" value="CVC" />
+			<p:inputMask widgetVar="provision.cvc" mask="999" />
+		</p:panel>
+
+	</p:panel>
+</composite:implementation>
+</html>
