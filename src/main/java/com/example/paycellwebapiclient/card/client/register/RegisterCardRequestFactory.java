@@ -2,7 +2,6 @@ package com.example.paycellwebapiclient.card.client.register;
 
 import static com.example.paycellwebapiclient.common.util.PaycellWebApiConstants.APPLICATION_NAME;
 import static com.example.paycellwebapiclient.common.util.PaycellWebApiConstants.APPLICATION_PASSWORD;
-import static com.example.paycellwebapiclient.common.util.PaycellWebApiConstants.EULAID;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.example.paycellwebapiclient.common.util.UniqueIdGenerator;
@@ -24,7 +23,6 @@ public class RegisterCardRequestFactory {
    */
   public RegisterCardRequestFactory() {
     request = new RegisterCardRequest();
-    request.setEulaId(EULAID);
     request.setRequestHeader(createRequestHeader());
   }
 
@@ -87,6 +85,17 @@ public class RegisterCardRequestFactory {
     return this;
   }
 
+
+  /**
+   * Kartın güncel sözleşme metni versiyon numarası iletilir.
+   * @param eulaId
+   * @return
+   */
+  public RegisterCardRequestFactory setEulaId(String eulaId) {
+    request.setEulaId(eulaId);
+    return this;
+  }
+
   /**
    * Kartın 3D doğrulama yöntemi ile eklenmesi durumunda getThreeDSession servisi cevabında dönülen
    * session ID değeri iletilir.
@@ -103,7 +112,7 @@ public class RegisterCardRequestFactory {
    * Üretilen request döndürülür.
    *
    * @return
-   * @throws Exception clientIpAddress/cardToken/msisdn bilglier boş ise fırlatılır.
+   * @throws Exception clientIpAddress/cardToken/msisdn/eulaId bilglier boş ise fırlatılır.
    */
   public RegisterCardRequest build() throws Exception {
     validate();
@@ -112,7 +121,7 @@ public class RegisterCardRequestFactory {
 
   /**
    *
-   * @throws Exception clientIpAddress/cardToken/msisdn bilglier boş ise fırlatılır.
+   * @throws Exception clientIpAddress/cardToken/msisdn/eulaId bilglier boş ise fırlatılır.
    */
   private void validate() throws Exception {
     if (request.getRequestHeader().getClientIPAddress() == null) {
@@ -123,6 +132,9 @@ public class RegisterCardRequestFactory {
     }
     if (request.getMsisdn() == null) {
       throw new Exception("Msisdn must be set first");
+    }
+    if (request.getEulaId() == null) {
+      throw new Exception("EulaId must be set first");
     }
   }
 

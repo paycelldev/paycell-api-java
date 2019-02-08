@@ -34,11 +34,13 @@
 			<p:ajax event="tabChange" />
 			<p:tab id="cardListTab" title="Card List">
 				<card:query dto="#{cardViewBean.cardQueryViewDto}"
+					termsOfServiceContent="#{cardViewBean.termsOfServiceContentViewDto}"
 					threeDSecureActive="#{cardViewBean.threeDSecureActive}" />
 			</p:tab>
 			<p:tab title="Add Card" rendered="#{cardViewBean.isAccountSet()}">
 				<card:register dto="#{cardViewBean.cardRegisterViewDto}"
 					threeDSecureActive="#{cardViewBean.threeDSecureActive}"
+					termsOfServiceContent="#{cardViewBean.termsOfServiceContentViewDto}"
 					update="cardListTab" />
 			</p:tab>
 			<p:tab title="Provision"

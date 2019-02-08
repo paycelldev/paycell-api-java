@@ -9,10 +9,28 @@
 
 <composite:interface>
 	<composite:attribute name="dto" />
+	<composite:attribute name="termsOfServiceContent" />
 	<composite:attribute name="threeDSecureActive" />
 </composite:interface>
 <composite:implementation>
 	<h:outputScript library="js" name="threeDSecure.js" target="head" />
+	<p:dialog header="Eula" widgetVar="eulaUpdateWidget" modal="true"
+		height="600">
+		<p:panel id="eulaUpdatePanel">
+			<h:outputText value="#{cc.attrs.termsOfServiceContent.eulaTextEN}"
+				escape="false" />
+			<p:commandButton
+				rendered="#{not cc.attrs.threeDSecureActive}"
+				value="Update" action="#{cc.attrs.dto.updateCard()}"
+				onclick="PF('eulaUpdateWidget').hide();" update="cardDataTable" />
+			<p:commandButton
+				rendered="#{cc.attrs.threeDSecureActive}"
+				value="Accept" action="#{cc.attrs.dto.updateCardThreeD()}"
+				onclick="PF('eulaUpdateWidget').hide();window.threeDSecurePage=window.open('_blank', '_blank');"
+				oncomplete="listenUpdateCardThreeD()" update="cardDataTable" />
+		</p:panel>
+
+	</p:dialog>
 	<p:panel id="queryPanel" header="Card List">
 		<p:panelGrid columns="2">
 			<h:outputLabel for="@next" value="Msisdn:" />
@@ -79,16 +97,29 @@
 				<p:column>
 					<p:commandButton value="Edit" rendered="#{not cardItem.editMode}"
 						action="#{cardItem.setEditMode(true)}" update="@form" />
+					<p:commandButton value="Update"
+						onclick="selectCard([{name: 'cardToSelect', value: '#{cardItem.cardId}'}]);"
+						rendered="#{cardItem.editMode and cardItem.showEulaId}"
+						oncomplete="PF('eulaUpdateWidget').show();"
+						update="cardDataTable"
+						/>
 					<p:commandButton
-						rendered="#{cardItem.editMode and not cc.attrs.threeDSecureActive}"
-						value="Update" action="#{cc.attrs.dto.updateCard(cardItem)}"
+						rendered="#{not cardItem.showEulaId and cardItem.editMode and not cc.attrs.threeDSecureActive}"
+						value="Update"
+						action="#{cc.attrs.dto.updateCard()}"
+						onclick="selectCard([{name: 'cardToSelect', value: '#{cardItem.cardId}'}]);"
 						update="cardDataTable" />
 					<p:commandButton
-						rendered="#{cardItem.editMode and cc.attrs.threeDSecureActive}"
-						value="Update" action="#{cc.attrs.dto.updateCardThreeD(cardItem)}"
-						onclick="window.threeDSecurePage=window.open('_blank', '_blank');"
+						rendered="#{not cardItem.showEulaId and cardItem.editMode and cc.attrs.threeDSecureActive}"
+						value="Update"
+						action="#{cc.attrs.dto.updateCardThreeD()}"
+						onclick="selectCard([{name: 'cardToSelect', value: '#{cardItem.cardId}'}]);window.threeDSecurePage=window.open('_blank', '_blank');"
 						oncomplete="listenUpdateCardThreeD()" update="cardDataTable" />
 
+					<p:remoteCommand
+						name="selectCard"
+						action="#{cc.attrs.dto.selectCard}"
+						update="cardDataTable" />
 					<p:remoteCommand
 						rendered="#{cardItem.editMode and cc.attrs.threeDSecureActive}"
 						name="listenUpdateCardThreeD"

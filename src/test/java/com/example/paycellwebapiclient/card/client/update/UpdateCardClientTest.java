@@ -15,10 +15,12 @@ import com.example.paycellwebapiclient.card.client.delete.DeleteCardTestUtil;
 import com.example.paycellwebapiclient.card.client.query.GetCardsClient;
 import com.example.paycellwebapiclient.card.client.query.GetCardsRequestFactory;
 import com.example.paycellwebapiclient.card.client.register.RegisterCardTestUtil;
+import com.example.paycellwebapiclient.card.client.termsofservice.GetTermsOfServiceContentTestUtil;
 import com.example.paycellwebapiclient.common.util.BaseClient.ConnectionMethod;
 import com.turkcelltech.mf.tpay.web.provision.Card;
 import com.turkcelltech.mf.tpay.web.provision.GetCardsRequest;
 import com.turkcelltech.mf.tpay.web.provision.GetCardsResponse;
+import com.turkcelltech.mf.tpay.web.provision.GetTermsOfServiceContentResponse;
 import com.turkcelltech.mf.tpay.web.provision.UpdateCardRequest;
 import com.turkcelltech.mf.tpay.web.provision.UpdateCardResponse;
 
@@ -38,9 +40,14 @@ public class UpdateCardClientTest {
   @Autowired
   GetCardsClient getCardsClient;
 
+  @Autowired
+  GetTermsOfServiceContentTestUtil getTermsOfServiceContentTestUtil;
+
   String cardId;
   String msisdn;
   boolean isCardTemp;
+
+  private Long eulaId;
 
   @Before
   public void setup() throws Exception {
@@ -65,6 +72,10 @@ public class UpdateCardClientTest {
       cardId = registerCardTestUtil.registerCard(msisdn, creditCardNo, expireDateMonth, expireDateYear, cvcNo, connectionMethod);
       isCardTemp = true;
     }
+
+    GetTermsOfServiceContentResponse termsOfServiceContent =
+        getTermsOfServiceContentTestUtil.getTermsOfServiceContent(connectionMethod);
+    eulaId = termsOfServiceContent.getEulaId();
   }
 
   @After
@@ -86,6 +97,7 @@ public class UpdateCardClientTest {
     factory.setCardId(cardId);
     factory.setMsisdn(msisdn);
     factory.setAlias(alias);
+    factory.setEulaId(String.valueOf(eulaId));
     factory.setIsDefault(true);
     UpdateCardRequest request = factory.build();
     UpdateCardResponse response = updateCardClient.updateCard(request, connectionMethod);
@@ -106,6 +118,7 @@ public class UpdateCardClientTest {
     factory.setCardId(cardId);
     factory.setMsisdn(msisdn);
     factory.setAlias(alias);
+    factory.setEulaId(String.valueOf(eulaId));
     factory.setIsDefault(true);
     UpdateCardRequest request = factory.build();
     UpdateCardResponse response = updateCardClient.updateCard(request, connectionMethod);

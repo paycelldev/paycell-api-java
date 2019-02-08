@@ -31,6 +31,7 @@ public class ProvisionSoapClient
     Integer installmentCount = request.getInstallmentCount();
     String merchantCode = request.getMerchantCode();
     String msisdn = request.getMsisdn();
+    String originalReferenceNumber = request.getOriginalReferenceNumber();
     PaymentType paymentType = request.getPaymentType();
     String pin = request.getPin();
     String pointAmount = request.getPointAmount();
@@ -42,10 +43,12 @@ public class ProvisionSoapClient
     Holder<String> orderId = new Holder<>();
     Holder<String> reconciliationDate = new Holder<>();
 
+    Holder<String> iyzPaymentId = new Holder<>();
+    Holder<String> iyzPaymentTransactionId = new Holder<>();
     provisionService.provision(extraParameters, requestHeader, acquirerBankCode, amount,
-        cardId, cardToken, currency, installmentCount, merchantCode, msisdn, paymentType,
+        cardId, cardToken, currency, installmentCount, merchantCode, msisdn, originalReferenceNumber, paymentType,
         pin, pointAmount, referenceNumber, threeDSessionId, responseHeader, approvalCode,
-        issuerBankCode, orderId, reconciliationDate);
+        issuerBankCode, iyzPaymentId, iyzPaymentTransactionId, orderId, reconciliationDate);
 
     ProvisionResponse response = new ProvisionResponse();
     response.setAcquirerBankCode(acquirerBankCode.value);

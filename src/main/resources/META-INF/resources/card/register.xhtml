@@ -7,12 +7,24 @@
 	xmlns:composite="http://java.sun.com/jsf/composite">
 <composite:interface>
 	<composite:attribute name="dto" />
+	<composite:attribute name="termsOfServiceContent" />
 	<composite:attribute name="update" />
 	<composite:attribute name="threeDSecureActive" />
 </composite:interface>
 <composite:implementation>
 	<h:outputScript library="js" name="cardToken.js" target="head" />
 	<h:outputScript library="js" name="register.js" target="head" />
+
+	<p:dialog header="Eula" widgetVar="eulaRegisterWidget" modal="true" height="600">
+		<p:panel id="eulaRegisterPanel">
+			<h:outputText value="#{cc.attrs.termsOfServiceContent.eulaTextEN}" escape="false" />
+		    <p:commandButton rendered="#{not cc.attrs.threeDSecureActive}" value="Register Card"
+				onclick="registerButtonOnClickHandler(false);PF('eulaRegisterWidget').hide();"/>
+			<p:commandButton rendered="#{cc.attrs.threeDSecureActive}" value="Register Card"
+				onclick="PF('eulaRegisterWidget').hide();window.threeDSecurePage=window.open('_blank', '_blank');registerButtonOnClickHandler(true);"/>
+		</p:panel>
+
+	</p:dialog>
 	<p:panel id="registerCardPanel" header="Register Card">
 		<p:panelGrid columns="2">
 			<h:outputLabel for="@next" value="threeDSessionId" />
@@ -38,10 +50,8 @@
 			<p:selectBooleanButton widgetVar="isDefault" id="value1" onLabel="Yes" offLabel="No"
 				style="width:60px" value="#{cc.attrs.dto.isDefault}" />
 		</p:panelGrid>
-		<p:commandButton rendered="#{not cc.attrs.threeDSecureActive}" value="Register Card"
-			onclick="registerButtonOnClickHandler(false);"/>
-		<p:commandButton rendered="#{cc.attrs.threeDSecureActive}" value="Register Card"
-			onclick="window.threeDSecurePage=window.open('_blank', '_blank');registerButtonOnClickHandler(true);"/>
+
+    	<p:commandButton value="Register Card" type="button" onclick="PF('eulaRegisterWidget').show();" update="eulaRegisterPanel"/>
 		<p:remoteCommand name="registerCard" action="#{cc.attrs.dto.registerCard}" update="@form" />
 		<p:remoteCommand name="registerCardThreeD" action="#{cc.attrs.dto.registerCardThreeD}" update="@form" oncomplete="listenRegisterCardTreeD()"/>
 		<p:remoteCommand name="listenRegisterCardTreeD" action="#{cc.attrs.dto.listenRegisterCardTreeD}" update="@form" />

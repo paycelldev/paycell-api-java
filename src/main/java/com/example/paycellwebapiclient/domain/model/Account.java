@@ -71,9 +71,9 @@ public class Account {
     }
   }
 
-  public void registerCard(Card card, String clientIpAddress,
-      ConnectionMethod connectionMethod) throws Exception {
-    card.save(clientIpAddress, getMsisdn(), connectionMethod);
+  public void registerCard(Card card, String eulaId,
+      String clientIpAddress, ConnectionMethod connectionMethod) throws Exception {
+    card.save(clientIpAddress, getMsisdn(), eulaId, connectionMethod);
     loadCards(clientIpAddress, connectionMethod);
   }
 
@@ -88,9 +88,9 @@ public class Account {
     loadCards(clientIPAddress, connectionMethod);
   }
 
-  public void updateCard(Card updatedCard, String clientIPAddress,
-      ConnectionMethod connectionMethod) throws Exception {
-    updatedCard.update(clientIPAddress, getMsisdn(), connectionMethod);
+  public void updateCard(Card updatedCard, String eulaId,
+      String clientIPAddress, ConnectionMethod connectionMethod) throws Exception {
+    updatedCard.update(clientIPAddress, getMsisdn(), eulaId, connectionMethod);
   }
 
   public void startThreeDSessionForProvision(ThreeDSession threeDSession,

@@ -26,6 +26,13 @@ public class CardQueryViewDto implements CardQueryListener {
   }
 
   @Override
+  public void selectCard() {
+    if (cardQueryListener != null) {
+      cardQueryListener.selectCard();
+    }
+  }
+
+  @Override
   public void queryCards() {
     if (cardQueryListener != null) {
       cardQueryListener.queryCards();
@@ -40,16 +47,16 @@ public class CardQueryViewDto implements CardQueryListener {
   }
 
   @Override
-  public void updateCard(CardViewDto updatedCard) {
+  public void updateCard() {
     if (cardQueryListener != null) {
-      cardQueryListener.updateCard(updatedCard);
+      cardQueryListener.updateCard();
     }
   }
 
   @Override
-  public void updateCardThreeD(CardViewDto updatedCard) {
+  public void updateCardThreeD() {
     if (cardQueryListener != null) {
-      cardQueryListener.updateCardThreeD(updatedCard);
+      cardQueryListener.updateCardThreeD();
     }
   }
 

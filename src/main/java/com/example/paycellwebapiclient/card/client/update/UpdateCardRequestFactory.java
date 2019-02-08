@@ -2,7 +2,6 @@ package com.example.paycellwebapiclient.card.client.update;
 
 import static com.example.paycellwebapiclient.common.util.PaycellWebApiConstants.APPLICATION_NAME;
 import static com.example.paycellwebapiclient.common.util.PaycellWebApiConstants.APPLICATION_PASSWORD;
-import static com.example.paycellwebapiclient.common.util.PaycellWebApiConstants.EULAID;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.example.paycellwebapiclient.common.util.UniqueIdGenerator;
@@ -24,7 +23,6 @@ public class UpdateCardRequestFactory {
    */
   public UpdateCardRequestFactory() {
     request = new UpdateCardRequest();
-    request.setEulaId(EULAID);
     request.setRequestHeader(createRequestHeader());
   }
 
@@ -102,10 +100,20 @@ public class UpdateCardRequestFactory {
   }
 
   /**
+   * Kartın güncel sözleşme metni versiyon numarası iletilir.
+   * @param eulaId
+   * @return
+   */
+  public UpdateCardRequestFactory setEulaId(String eulaId) {
+    request.setEulaId(eulaId);
+    return this;
+  }
+
+  /**
    * Üretilen request döndürülür.
    *
    * @return
-   * @throws Exception clientIpAddress/cardId/msisdn boş ise fırlatılır.
+   * @throws Exception clientIpAddress/cardId/msisdn/eulaId boş ise fırlatılır.
    */
   public UpdateCardRequest build() throws Exception {
     validate();
@@ -114,7 +122,7 @@ public class UpdateCardRequestFactory {
 
   /**
    *
-   * @throws Exception clientIpAddress/cardId/msisdn boş ise fırlatılır.
+   * @throws Exception clientIpAddress/cardId/msisdn/eulaId boş ise fırlatılır.
    */
   private void validate() throws Exception {
     if (request.getRequestHeader().getClientIPAddress() == null) {
@@ -125,6 +133,9 @@ public class UpdateCardRequestFactory {
     }
     if (request.getMsisdn() == null) {
       throw new Exception("Msisdn must be set first");
+    }
+    if (request.getEulaId() == null) {
+      throw new Exception("EulaId must be set first");
     }
   }
 

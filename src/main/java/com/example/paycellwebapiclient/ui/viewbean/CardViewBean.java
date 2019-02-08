@@ -27,6 +27,7 @@ import com.example.paycellwebapiclient.domain.model.Refund;
 import com.example.paycellwebapiclient.domain.model.Reverse;
 import com.example.paycellwebapiclient.domain.model.SubMerchant;
 import com.example.paycellwebapiclient.domain.model.SummaryReconciliation;
+import com.example.paycellwebapiclient.domain.model.TermsOfService;
 import com.example.paycellwebapiclient.domain.model.ThreeDSession;
 import com.example.paycellwebapiclient.domain.model.Transaction;
 import com.example.paycellwebapiclient.common.util.PaycellWebApiConstants;
@@ -35,6 +36,7 @@ import com.example.paycellwebapiclient.ui.card.query.CardQueryViewDto;
 import com.example.paycellwebapiclient.ui.card.query.CardViewDto;
 import com.example.paycellwebapiclient.ui.card.register.CardRegisterListener;
 import com.example.paycellwebapiclient.ui.card.register.CardRegisterViewDto;
+import com.example.paycellwebapiclient.ui.card.termsofservice.TermsOfServiceContentViewDto;
 import com.example.paycellwebapiclient.ui.payment.inquire.InquireListener;
 import com.example.paycellwebapiclient.ui.payment.inquire.InquireViewDto;
 import com.example.paycellwebapiclient.ui.payment.provision.CustomerEMailViewDto;
@@ -82,6 +84,8 @@ public class CardViewBean extends BaseViewBean
 
   private ProvisionHistoryViewDto provisionHistoryViewDto;
 
+  private TermsOfServiceContentViewDto termsOfServiceContentViewDto;
+
   private Account account;
 
   private ThreeDSession threeDSession;
@@ -95,6 +99,21 @@ public class CardViewBean extends BaseViewBean
   public CardViewBean() {
     connectionMethod = "REST";
     resetView();
+  }
+
+  private void retrieveTermsOfServiceContent() {
+    setTermsOfServiceContentViewDto(new TermsOfServiceContentViewDto());
+    try {
+      TermsOfService termsOfService = webApplicationContext.getBean(TermsOfService.class);
+      termsOfService.retrieveLatestEula(getClientIPAddress(), enumConnectionMethod());
+      getTermsOfServiceContentViewDto()
+          .setEulaId(String.valueOf(termsOfService.getEulaId()));
+      getTermsOfServiceContentViewDto().setEulaTextEN(termsOfService.getEulaTextEN());
+      getTermsOfServiceContentViewDto().setEulaTextTR(termsOfService.getEulaTextTR());
+    } catch (Exception e) {
+      e.printStackTrace();
+      error(e.getMessage());
+    }
   }
 
   private void resetView() {
@@ -112,6 +131,7 @@ public class CardViewBean extends BaseViewBean
 
   @Override
   public void queryCards() {
+    retrieveTermsOfServiceContent();
     String extractedMsisdn = cardQueryViewDto.getMsisdn().replaceAll("\\D", "");
     if (extractedMsisdn.isEmpty()) {
       resetView();
@@ -151,7 +171,8 @@ public class CardViewBean extends BaseViewBean
       card.setCvcNo(cardRegisterViewDto.getCvcNo());
       card.setIsDefault(cardRegisterViewDto.getIsDefault());
       card.setCardToken(cardToken);
-      account.registerCard(card, getClientIPAddress(), enumConnectionMethod());
+      account.registerCard(card, getTermsOfServiceContentViewDto().getEulaId(),
+          getClientIPAddress(), enumConnectionMethod());
       info("Registered successfully.");
       queryCards();
       cardRegisterViewDto = new CardRegisterViewDto(this);
@@ -190,11 +211,22 @@ public class CardViewBean extends BaseViewBean
   }
 
   @Override
-  public void updateCard(CardViewDto updatedCardViewDto) {
+  public void selectCard() {
+    Map<String, String> params =
+        FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+    String cardId = params.get("cardToSelect");
+    CardViewDto card = cardQueryViewDto.getCards().stream().filter(c -> c.getCardId().contentEquals(cardId))
+        .findFirst().orElse(null);
+    cardQueryViewDto.setSelectedCard(card);
+  }
+
+  @Override
+  public void updateCard() {
     try {
       Card updatedCard = webApplicationContext.getBean(Card.class);
-      BeanUtils.copyProperties(updatedCardViewDto, updatedCard);
-      account.updateCard(updatedCard, getClientIPAddress(), enumConnectionMethod());
+      BeanUtils.copyProperties(cardQueryViewDto.getSelectedCard(), updatedCard);
+      account.updateCard(updatedCard, termsOfServiceContentViewDto.getEulaId(),
+          getClientIPAddress(), enumConnectionMethod());
       info("Updated successfully.");
       queryCards();
     } catch (Exception e) {
@@ -203,10 +235,10 @@ public class CardViewBean extends BaseViewBean
   }
 
   @Override
-  public void updateCardThreeD(CardViewDto updatedCardViewDto) {
+  public void updateCardThreeD() {
     try {
       threeDSession = webApplicationContext.getBean(ThreeDSession.class);
-      threeDSession.setCardId(updatedCardViewDto.getCardId());
+      threeDSession.setCardId(cardQueryViewDto.getSelectedCard().getCardId());
       account.startThreeDSessionForCard(threeDSession, getClientIPAddress());
       cardQueryViewDto.setThreeDSessionId(threeDSession.getThreeDSessionId());
 
@@ -221,7 +253,7 @@ public class CardViewBean extends BaseViewBean
   @Override
   public void listenUpdateCardThreeD(CardViewDto updatedCardViewDto) {
     waitForThreeDResult((t) -> {
-      updateCard(updatedCardViewDto);
+      updateCard();
     });
   }
 
@@ -741,6 +773,15 @@ public class CardViewBean extends BaseViewBean
 
   public void setThreeDSecureActive(Boolean threeDSecureActive) {
     this.threeDSecureActive = threeDSecureActive;
+  }
+
+  public TermsOfServiceContentViewDto getTermsOfServiceContentViewDto() {
+    return termsOfServiceContentViewDto;
+  }
+
+  public void setTermsOfServiceContentViewDto(
+      TermsOfServiceContentViewDto termsOfServiceContentViewDto) {
+    this.termsOfServiceContentViewDto = termsOfServiceContentViewDto;
   }
 
 }

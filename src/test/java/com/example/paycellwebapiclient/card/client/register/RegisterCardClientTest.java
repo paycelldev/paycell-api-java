@@ -31,7 +31,6 @@ public class RegisterCardClientTest {
   public void testRegisterCardRest() throws Exception {
     ConnectionMethod connectionMethod = ConnectionMethod.REST;
 
-
     String cardId = registerCardTestUtil.registerCard(msisdn, creditCardNo,
         expireDateMonth, expireDateYear, cvcNo, connectionMethod);
     assertNotNull(cardId);
@@ -43,14 +42,11 @@ public class RegisterCardClientTest {
   public void testRegisterCardSoap() throws Exception {
     ConnectionMethod connectionMethod = ConnectionMethod.SOAP;
 
-    String msisdn = "905465553333";
-    String creditCardNo = "5400610093155852";
-    String expireDateMonth = "02";
-    String expireDateYear = "20";
-    String cvcNo = "000";
     String cardId = registerCardTestUtil.registerCard(msisdn, creditCardNo,
         expireDateMonth, expireDateYear, cvcNo, connectionMethod);
     assertNotNull(cardId);
+
+    deleteCardTestUtil.deleteCard(cardId, msisdn, connectionMethod);
   }
 
 }

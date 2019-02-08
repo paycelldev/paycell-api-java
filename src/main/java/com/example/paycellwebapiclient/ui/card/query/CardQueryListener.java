@@ -4,12 +4,13 @@ public interface CardQueryListener {
 
   void queryCards();
 
+  void selectCard();
 
   void deleteCard(CardViewDto deletedCard);
 
-  void updateCard(CardViewDto updatedCard);
+  void updateCard();
 
-  void updateCardThreeD(CardViewDto updatedCard);
+  void updateCardThreeD();
 
   void listenUpdateCardThreeD(CardViewDto updatedCard);
 

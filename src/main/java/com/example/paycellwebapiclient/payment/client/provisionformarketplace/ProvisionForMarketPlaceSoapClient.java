@@ -43,6 +43,8 @@ public class ProvisionForMarketPlaceSoapClient extends
     Holder<ResponseHeader> responseHeader = new Holder<>();
     Holder<String> approvalCode = new Holder<>();
     Holder<String> issuerBankCode = new Holder<>();
+    Holder<String> iyzPaymentId = new Holder<>();
+    Holder<String> iyzTransactionId = new Holder<>();
     Holder<String> orderId = new Holder<>();
     Holder<String> reconciliationDate = new Holder<>();
 
@@ -50,7 +52,7 @@ public class ProvisionForMarketPlaceSoapClient extends
         acquirerBankCode, amount, cardId, cardToken, currency, customerEmail,
         installmentCount, merchantCode, msisdn, paymentType, pin, pointAmount,
         referenceNumber, subMerchants, threeDSessionId, responseHeader, approvalCode,
-        issuerBankCode, orderId, reconciliationDate);
+        issuerBankCode, iyzPaymentId, iyzTransactionId, orderId, reconciliationDate);
 
     ProvisionForMarketPlaceResponse response = new ProvisionForMarketPlaceResponse();
     response.setResponseHeader(responseHeader.value);

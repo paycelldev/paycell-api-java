@@ -5,10 +5,12 @@ import static org.junit.Assert.assertNotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.example.paycellwebapiclient.card.client.query.GetCardsTestUtil;
+import com.example.paycellwebapiclient.card.client.termsofservice.GetTermsOfServiceContentTestUtil;
 import com.example.paycellwebapiclient.card.client.token.GetCardTokenTestUtil;
 import com.example.paycellwebapiclient.common.util.BaseClient.ConnectionMethod;
 import com.turkcelltech.mf.tpay.web.provision.Card;
 import com.turkcelltech.mf.tpay.web.provision.GetCardsResponse;
+import com.turkcelltech.mf.tpay.web.provision.GetTermsOfServiceContentResponse;
 import com.turkcelltech.mf.tpay.web.provision.RegisterCardRequest;
 import com.turkcelltech.mf.tpay.web.provision.RegisterCardResponse;
 
@@ -24,19 +26,28 @@ public class RegisterCardTestUtil {
   @Autowired
   private GetCardsTestUtil getCardsTestUtil;
 
+  @Autowired
+  private GetTermsOfServiceContentTestUtil getTermsOfServiceContentTestUtil;
+
   public String registerCard(String msisdn, String creditCardNo, String expireDateMonth,
-      String expireDateYear, String cvcNo, ConnectionMethod connectionMethod) throws Exception {
-    GetCardsResponse getCardsResponse = getCardsTestUtil.getCards(msisdn, connectionMethod);
-    for(Card card : getCardsResponse.getCardList()) {
-      if(card.getMaskedCardNo().substring(12, 16).equals(creditCardNo.substring(12, 16))) {
+      String expireDateYear, String cvcNo, ConnectionMethod connectionMethod)
+      throws Exception {
+    GetCardsResponse getCardsResponse =
+        getCardsTestUtil.getCards(msisdn, connectionMethod);
+    for (Card card : getCardsResponse.getCardList()) {
+      if (card.getMaskedCardNo().substring(12, 16)
+          .equals(creditCardNo.substring(12, 16))) {
         return card.getCardId();
       }
     }
 
     String cardToken = getCardTokenTestUtil.getCardToken(creditCardNo, expireDateMonth,
         expireDateYear, cvcNo);
+    GetTermsOfServiceContentResponse termsOfServiceContent =
+        getTermsOfServiceContentTestUtil.getTermsOfServiceContent(connectionMethod);
     RegisterCardRequest request = new RegisterCardRequestFactory().setCardToken(cardToken)
         .setAlias("test").setIsDefault(true).setMsisdn(msisdn)
+        .setEulaId(String.valueOf(termsOfServiceContent.getEulaId()))
         .setClientIPAddress("10.250.171.15").build();
     RegisterCardResponse response =
         registerCardClient.registerCard(request, connectionMethod);

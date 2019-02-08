@@ -43,6 +43,8 @@ public class PaycellWebApiConstants {
         "https://tpay-test.turkcell.com.tr/tpay/provision/services/restful/getCardToken/getProvisionHistory";
     public static final String PROVISION_FOR_MARKET_PLACE_URL =
         "https://tpay-test.turkcell.com.tr/tpay/provision/services/restful/getCardToken/provisionForMarketPlace/";
+    public static final String GET_TERMS_OF_SERVICE_CONTENT_URL =
+        "https://tpay-test.turkcell.com.tr/tpay/provision/services/restful/getCardToken/getTermsOfServiceContent";
 
   }
 

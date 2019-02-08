@@ -125,7 +125,7 @@ public class CardViewDto {
   }
 
   public Boolean getShowEulaId() {
-    return showEulaId;
+    return true;
   }
 
   public void setShowEulaId(Boolean showEulaId) {

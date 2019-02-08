@@ -62,13 +62,14 @@ public class Card {
   private String activationDate;
 
   public String save(String clientIPAddress, String msisdn,
-      ConnectionMethod connectionMethod) throws Exception {
+      String eulaId, ConnectionMethod connectionMethod) throws Exception {
     RegisterCardRequestFactory factory = new RegisterCardRequestFactory();
     factory.setClientIPAddress(clientIPAddress);
     factory.setMsisdn(msisdn);
     factory.setAlias(alias);
     factory.setIsDefault(isDefault);
     factory.setCardToken(cardToken);
+    factory.setEulaId(eulaId);
     RegisterCardRequest request = factory.build();
 
     RegisterCardResponse response =
@@ -109,13 +110,14 @@ public class Card {
   }
 
   public void update(String clientIPAddress, String msisdn,
-      ConnectionMethod connectionMethod) throws Exception {
+      String eulaId, ConnectionMethod connectionMethod) throws Exception {
     UpdateCardRequestFactory factory = new UpdateCardRequestFactory();
     factory.setClientIPAddress(clientIPAddress);
     factory.setMsisdn(msisdn);
     factory.setCardId(cardId);
     factory.setAlias(alias);
     factory.setIsDefault(isDefault);
+    factory.setEulaId(eulaId);
     UpdateCardRequest request = factory.build();
 
     UpdateCardResponse response = updateCardClient.updateCard(request, connectionMethod);
