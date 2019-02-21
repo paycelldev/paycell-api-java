@@ -16,6 +16,22 @@ public class SummaryReconciliation {
 
   private String reconciliationDate;
 
+  private String totalPostAuthAmount;
+
+  private String totalPostAuthReverseAmount;
+
+  private String totalPreAuthAmount;
+
+  private String totalPreAuthReverseAmount;
+
+  private String totalPostAuthCount;
+
+  private String totalPostAuthReverseCount;
+
+  private String totalPreAuthCount;
+
+  private String totalPreAuthReverseCount;
+
   private String totalSaleAmount;
 
   private String totalReverseAmount;
@@ -27,6 +43,22 @@ public class SummaryReconciliation {
   private Integer totalReverseCount;
 
   private Integer totalRefundCount;
+
+  private String responseTotalPostAuthAmount;
+
+  private String responseTotalPostAuthReverseAmount;
+
+  private String responseTotalPreAuthAmount;
+
+  private String responseTotalPreAuthReverseAmount;
+
+  private String responseTotalPostAuthCount;
+
+  private String responseTotalPostAuthReverseCount;
+
+  private String responseTotalPreAuthCount;
+
+  private String responseTotalPreAuthReverseCount;
 
   private String responseTotalSaleAmount;
 
@@ -56,6 +88,15 @@ public class SummaryReconciliation {
     factory.setTotalSaleCount(totalSaleCount);
     factory.setTotalReverseCount(totalReverseCount);
     factory.setTotalRefundCount(totalRefundCount);
+    factory.setTotalPostAuthAmount(totalPostAuthAmount);
+    factory.setTotalPostAuthCount(totalPostAuthCount);
+    factory.setTotalPostAuthReverseAmount(totalPostAuthReverseAmount);
+    factory.setTotalPostAuthReverseCount(totalPostAuthReverseCount);
+    factory.setTotalPreAuthAmount(totalPreAuthAmount);
+    factory.setTotalPreAuthCount(totalPreAuthCount);
+    factory.setTotalPreAuthReverseAmount(totalPreAuthReverseAmount);
+    factory.setTotalPreAuthReverseAmount(totalPreAuthReverseAmount);
+    factory.setTotalPostAuthReverseCount(totalPostAuthReverseCount);
     SummaryReconciliationRequest request = factory.build();
 
     SummaryReconciliationResponse response =
@@ -69,10 +110,82 @@ public class SummaryReconciliation {
       setResponseTotalSaleCount(response.getTotalSaleCount());
       setResponseTotalReverseCount(response.getTotalReverseCount());
       setResponseTotalRefundCount(response.getTotalRefundCount());
+      setResponseTotalPostAuthAmount(response.getTotalPostAuthAmount());
+      setResponseTotalPostAuthCount(response.getTotalPostAuthCount().toString());
+      setResponseTotalPostAuthReverseAmount(response.getTotalPostAuthReverseAmount());
+      setResponseTotalPostAuthReverseCount(response.getTotalPostAuthReverseCount().toString());
+      setResponseTotalPreAuthAmount(response.getTotalPreAuthAmount());
+      setResponseTotalPreAuthCount(response.getTotalPreAuthCount().toString());
+      setResponseTotalPreAuthReverseAmount(response.getTotalPreAuthReverseAmount());
+      setResponseTotalPreAuthReverseCount(response.getTotalPreAuthReverseCount().toString());
     } else {
       throw new Exception(
           "Bad Request: " + response.getResponseHeader().getResponseDescription());
     }
+  }
+
+  public String getTotalPostAuthAmount() {
+    return totalPostAuthAmount;
+  }
+
+  public void setTotalPostAuthAmount(String totalPostAuthAmount) {
+    this.totalPostAuthAmount = totalPostAuthAmount;
+  }
+
+  public String getTotalPostAuthReverseAmount() {
+    return totalPostAuthReverseAmount;
+  }
+
+  public void setTotalPostAuthReverseAmount(String totalPostAuthReverseAmount) {
+    this.totalPostAuthReverseAmount = totalPostAuthReverseAmount;
+  }
+
+  public String getTotalPreAuthAmount() {
+    return totalPreAuthAmount;
+  }
+
+  public void setTotalPreAuthAmount(String totalPreAuthAmount) {
+    this.totalPreAuthAmount = totalPreAuthAmount;
+  }
+
+  public String getTotalPreAuthReverseAmount() {
+    return totalPreAuthReverseAmount;
+  }
+
+  public void setTotalPreAuthReverseAmount(String totalPreAuthReverseAmount) {
+    this.totalPreAuthReverseAmount = totalPreAuthReverseAmount;
+  }
+
+  public String getTotalPostAuthCount() {
+    return totalPostAuthCount;
+  }
+
+  public void setTotalPostAuthCount(String totalPostAuthCount) {
+    this.totalPostAuthCount = totalPostAuthCount;
+  }
+
+  public String getTotalPostAuthReverseCount() {
+    return totalPostAuthReverseCount;
+  }
+
+  public void setTotalPostAuthReverseCount(String totalPostAuthReverseCount) {
+    this.totalPostAuthReverseCount = totalPostAuthReverseCount;
+  }
+
+  public String getTotalPreAuthCount() {
+    return totalPreAuthCount;
+  }
+
+  public void setTotalPreAuthCount(String totalPreAuthCount) {
+    this.totalPreAuthCount = totalPreAuthCount;
+  }
+
+  public String getTotalPreAuthReverseCount() {
+    return totalPreAuthReverseCount;
+  }
+
+  public void setTotalPreAuthReverseCount(String totalPreAuthReverseCount) {
+    this.totalPreAuthReverseCount = totalPreAuthReverseCount;
   }
 
   public String getReconciliationDate() {
@@ -185,6 +298,73 @@ public class SummaryReconciliation {
 
   public void setReconciliationResult(String reconciliationResult) {
     this.reconciliationResult = reconciliationResult;
+  }
+
+  public String getResponseTotalPostAuthAmount() {
+    return responseTotalPostAuthAmount;
+  }
+
+  public void setResponseTotalPostAuthAmount(String responseTotalPostAuthAmount) {
+    this.responseTotalPostAuthAmount = responseTotalPostAuthAmount;
+  }
+
+  public String getResponseTotalPostAuthReverseAmount() {
+    return responseTotalPostAuthReverseAmount;
+  }
+
+  public void setResponseTotalPostAuthReverseAmount(
+      String responseTotalPostAuthReverseAmount) {
+    this.responseTotalPostAuthReverseAmount = responseTotalPostAuthReverseAmount;
+  }
+
+  public String getResponseTotalPreAuthAmount() {
+    return responseTotalPreAuthAmount;
+  }
+
+  public void setResponseTotalPreAuthAmount(String responseTotalPreAuthAmount) {
+    this.responseTotalPreAuthAmount = responseTotalPreAuthAmount;
+  }
+
+  public String getResponseTotalPreAuthReverseAmount() {
+    return responseTotalPreAuthReverseAmount;
+  }
+
+  public void setResponseTotalPreAuthReverseAmount(
+      String responseTotalPreAuthReverseAmount) {
+    this.responseTotalPreAuthReverseAmount = responseTotalPreAuthReverseAmount;
+  }
+
+  public String getResponseTotalPostAuthCount() {
+    return responseTotalPostAuthCount;
+  }
+
+  public void setResponseTotalPostAuthCount(String responseTotalPostAuthCount) {
+    this.responseTotalPostAuthCount = responseTotalPostAuthCount;
+  }
+
+  public String getResponseTotalPostAuthReverseCount() {
+    return responseTotalPostAuthReverseCount;
+  }
+
+  public void setResponseTotalPostAuthReverseCount(
+      String responseTotalPostAuthReverseCount) {
+    this.responseTotalPostAuthReverseCount = responseTotalPostAuthReverseCount;
+  }
+
+  public String getResponseTotalPreAuthCount() {
+    return responseTotalPreAuthCount;
+  }
+
+  public void setResponseTotalPreAuthCount(String responseTotalPreAuthCount) {
+    this.responseTotalPreAuthCount = responseTotalPreAuthCount;
+  }
+
+  public String getResponseTotalPreAuthReverseCount() {
+    return responseTotalPreAuthReverseCount;
+  }
+
+  public void setResponseTotalPreAuthReverseCount(String responseTotalPreAuthReverseCount) {
+    this.responseTotalPreAuthReverseCount = responseTotalPreAuthReverseCount;
   }
 
 }

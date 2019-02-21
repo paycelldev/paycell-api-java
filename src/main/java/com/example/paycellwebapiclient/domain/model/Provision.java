@@ -54,8 +54,8 @@ public class Provision {
   @Autowired
   private ProvisionClient provisionClient;
 
-  public String provision(String clientIPAddress, String msisdn, String cardId,
-      String cardToken, ConnectionMethod connectionMethod) throws Exception {
+  public String provision(String threeDSessionId, String clientIPAddress, String msisdn,
+      String cardId, String cardToken, ConnectionMethod connectionMethod) throws Exception {
     ProvisionRequestFactory factory = new ProvisionRequestFactory();
     factory.setClientIPAddress(clientIPAddress);
     factory.setAcquirerBankCode(acquirerBankCode);

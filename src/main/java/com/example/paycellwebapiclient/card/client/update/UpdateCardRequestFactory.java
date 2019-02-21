@@ -56,7 +56,7 @@ public class UpdateCardRequestFactory {
    * @return
    */
   public UpdateCardRequestFactory setIsDefault(Boolean isDefault) {
-    request.setIsDefault(isDefault);
+    request.setIsDefault(isDefault ? true : null);
     return this;
   }
 

@@ -4,6 +4,22 @@ public class SummaryReconciliationViewDto implements SummaryReconciliationListen
 
   private String reconciliationDate;
 
+  private String totalPostAuthAmount;
+
+  private String totalPostAuthCount;
+
+  private String totalPostAuthReverseAmount;
+
+  private String totalPostAuthReverseCount;
+
+  private String totalPreAuthAmount;
+
+  private String totalPreAuthCount;
+
+  private String totalPreAuthReverseAmount;
+
+  private String totalPreAuthReverseCount;
+
   private String totalSaleAmount;
 
   private String totalReverseAmount;
@@ -15,6 +31,22 @@ public class SummaryReconciliationViewDto implements SummaryReconciliationListen
   private String totalReverseCount;
 
   private String totalRefundCount;
+
+  private String responseTotalPostAuthAmount;
+
+  private String responseTotalPostAuthCount;
+
+  private String responseTotalPostAuthReverseAmount;
+
+  private String responseTotalPostAuthReverseCount;
+
+  private String responseTotalPreAuthAmount;
+
+  private String responseTotalPreAuthCount;
+
+  private String responseTotalPreAuthReverseAmount;
+
+  private String responseTotalPreAuthReverseCount;
 
   private String responseTotalSaleAmount;
 
@@ -42,6 +74,70 @@ public class SummaryReconciliationViewDto implements SummaryReconciliationListen
     if (summaryReconciliationListener != null) {
       summaryReconciliationListener.summaryReconciliation();
     }
+  }
+
+  public String getTotalPostAuthAmount() {
+    return totalPostAuthAmount;
+  }
+
+  public void setTotalPostAuthAmount(String totalPostAuthAmount) {
+    this.totalPostAuthAmount = totalPostAuthAmount;
+  }
+
+  public String getTotalPostAuthCount() {
+    return totalPostAuthCount;
+  }
+
+  public void setTotalPostAuthCount(String totalPostAuthCount) {
+    this.totalPostAuthCount = totalPostAuthCount;
+  }
+
+  public String getTotalPostAuthReverseAmount() {
+    return totalPostAuthReverseAmount;
+  }
+
+  public void setTotalPostAuthReverseAmount(String totalPostAuthReverseAmount) {
+    this.totalPostAuthReverseAmount = totalPostAuthReverseAmount;
+  }
+
+  public String getTotalPostAuthReverseCount() {
+    return totalPostAuthReverseCount;
+  }
+
+  public void setTotalPostAuthReverseCount(String totalPostAuthReverseCount) {
+    this.totalPostAuthReverseCount = totalPostAuthReverseCount;
+  }
+
+  public String getTotalPreAuthAmount() {
+    return totalPreAuthAmount;
+  }
+
+  public void setTotalPreAuthAmount(String totalPreAuthAmount) {
+    this.totalPreAuthAmount = totalPreAuthAmount;
+  }
+
+  public String getTotalPreAuthCount() {
+    return totalPreAuthCount;
+  }
+
+  public void setTotalPreAuthCount(String totalPreAuthCount) {
+    this.totalPreAuthCount = totalPreAuthCount;
+  }
+
+  public String getTotalPreAuthReverseAmount() {
+    return totalPreAuthReverseAmount;
+  }
+
+  public void setTotalPreAuthReverseAmount(String totalPreAuthReverseAmount) {
+    this.totalPreAuthReverseAmount = totalPreAuthReverseAmount;
+  }
+
+  public String getTotalPreAuthReverseCount() {
+    return totalPreAuthReverseCount;
+  }
+
+  public void setTotalPreAuthReverseCount(String totalPreAuthReverseCount) {
+    this.totalPreAuthReverseCount = totalPreAuthReverseCount;
   }
 
   public String getReconciliationDate() {
@@ -98,6 +194,73 @@ public class SummaryReconciliationViewDto implements SummaryReconciliationListen
 
   public void setTotalRefundCount(String totalRefundCount) {
     this.totalRefundCount = totalRefundCount;
+  }
+
+  public String getResponseTotalPostAuthAmount() {
+    return responseTotalPostAuthAmount;
+  }
+
+  public void setResponseTotalPostAuthAmount(String responseTotalPostAuthAmount) {
+    this.responseTotalPostAuthAmount = responseTotalPostAuthAmount;
+  }
+
+  public String getResponseTotalPostAuthCount() {
+    return responseTotalPostAuthCount;
+  }
+
+  public void setResponseTotalPostAuthCount(String responseTotalPostAuthCount) {
+    this.responseTotalPostAuthCount = responseTotalPostAuthCount;
+  }
+
+  public String getResponseTotalPostAuthReverseAmount() {
+    return responseTotalPostAuthReverseAmount;
+  }
+
+  public void setResponseTotalPostAuthReverseAmount(
+      String responseTotalPostAuthReverseAmount) {
+    this.responseTotalPostAuthReverseAmount = responseTotalPostAuthReverseAmount;
+  }
+
+  public String getResponseTotalPostAuthReverseCount() {
+    return responseTotalPostAuthReverseCount;
+  }
+
+  public void setResponseTotalPostAuthReverseCount(
+      String responseTotalPostAuthReverseCount) {
+    this.responseTotalPostAuthReverseCount = responseTotalPostAuthReverseCount;
+  }
+
+  public String getResponseTotalPreAuthAmount() {
+    return responseTotalPreAuthAmount;
+  }
+
+  public void setResponseTotalPreAuthAmount(String responseTotalPreAuthAmount) {
+    this.responseTotalPreAuthAmount = responseTotalPreAuthAmount;
+  }
+
+  public String getResponseTotalPreAuthCount() {
+    return responseTotalPreAuthCount;
+  }
+
+  public void setResponseTotalPreAuthCount(String responseTotalPreAuthCount) {
+    this.responseTotalPreAuthCount = responseTotalPreAuthCount;
+  }
+
+  public String getResponseTotalPreAuthReverseAmount() {
+    return responseTotalPreAuthReverseAmount;
+  }
+
+  public void setResponseTotalPreAuthReverseAmount(
+      String responseTotalPreAuthReverseAmount) {
+    this.responseTotalPreAuthReverseAmount = responseTotalPreAuthReverseAmount;
+  }
+
+  public String getResponseTotalPreAuthReverseCount() {
+    return responseTotalPreAuthReverseCount;
+  }
+
+  public void setResponseTotalPreAuthReverseCount(String responseTotalPreAuthReverseCount) {
+    this.responseTotalPreAuthReverseCount = responseTotalPreAuthReverseCount;
   }
 
   public String getResponseTotalSaleAmount() {

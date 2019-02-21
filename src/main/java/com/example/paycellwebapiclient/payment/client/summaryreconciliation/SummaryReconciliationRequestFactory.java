@@ -121,6 +121,101 @@ public class SummaryReconciliationRequestFactory {
   }
 
   /**
+   * İlgili tarihte gerçekleşen [PostAuth] işlemlerinin toplam miktarıdır.
+   *
+   * @param totalPostAuthAmount
+   * @return
+   */
+  public SummaryReconciliationRequestFactory setTotalPostAuthAmount(
+      String totalPostAuthAmount) {
+    request.setTotalPostAuthAmount(totalPostAuthAmount);
+    return this;
+  }
+
+  /**
+   * İlgili tarihte gerçekleşen [PostAuthReverse] işlemlerinin toplam miktarıdır.
+   *
+   * @param totalPostAuthReverseAmount
+   * @return
+   */
+  public SummaryReconciliationRequestFactory setTotalPostAuthReverseAmount(
+      String totalPostAuthReverseAmount) {
+    request.setTotalPostAuthReverseAmount(totalPostAuthReverseAmount);
+    return this;
+  }
+
+  /**
+   * İlgili tarihte gerçekleşen [PreAuth] işlemlerinin toplam miktarıdır.
+   *
+   * @param totalPreAuthAmount
+   * @return
+   */
+  public SummaryReconciliationRequestFactory setTotalPreAuthAmount(
+      String totalPreAuthAmount) {
+    request.setTotalPreAuthAmount(totalPreAuthAmount);
+    return this;
+  }
+
+  /**
+   * İlgili tarihte gerçekleşen [PreAuthReverse] işlemlerinin toplam miktarıdır.
+   *
+   * @param totalPreAuthReverseAmount
+   * @return
+   */
+  public SummaryReconciliationRequestFactory setTotalPreAuthReverseAmount(
+      String totalPreAuthReverseAmount) {
+    request.setTotalPostAuthReverseAmount(totalPreAuthReverseAmount);
+    return this;
+  }
+
+  /**
+   * İlgili tarihte gerçekleşen [PostAuth] işlemlerinin toplam adedidir.
+   *
+   * @param totalPostAuthCount
+   * @return
+   */
+  public SummaryReconciliationRequestFactory setTotalPostAuthCount(
+      String totalPostAuthCount) {
+    request.setTotalPostAuthCount(Integer.valueOf(totalPostAuthCount));
+    return this;
+  }
+
+  /**
+   * İlgili tarihte gerçekleşen [PostAuthReverse] işlemlerinin toplam adedidir.
+   *
+   * @param totalPostAuthReverseCount
+   * @return
+   */
+  public SummaryReconciliationRequestFactory setTotalPostAuthReverseCount(
+      String totalPostAuthReverseCount) {
+    request.setTotalPostAuthReverseCount(Integer.valueOf(totalPostAuthReverseCount));
+    return this;
+  }
+
+  /**
+   * İlgili tarihte gerçekleşen [PreAuth] işlemlerinin toplam adedidir.
+   *
+   * @param totalPreAuthCount
+   * @return
+   */
+  public SummaryReconciliationRequestFactory setTotalPreAuthCount(
+      String totalPreAuthCount) {
+    request.setTotalPreAuthCount(Integer.valueOf(totalPreAuthCount));
+    return this;
+  }
+
+  /**
+   * İlgili tarihte gerçekleşen [PreAuthReverse] işlemlerinin toplam adedidir.
+   *
+   * @param totalPreAuthReverseCount
+   * @return
+   */
+  public SummaryReconciliationRequestFactory setTotalPreAuthReverseCount(String totalPreAuthReverseCount) {
+    request.setTotalPreAuthReverseCount(Integer.valueOf(totalPreAuthReverseCount));
+    return this;
+  }
+
+  /**
    * Üretilen request döndürülür.
    *
    * @return

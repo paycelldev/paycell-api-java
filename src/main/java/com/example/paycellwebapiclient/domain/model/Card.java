@@ -61,8 +61,8 @@ public class Card {
 
   private String activationDate;
 
-  public String save(String clientIPAddress, String msisdn,
-      String eulaId, ConnectionMethod connectionMethod) throws Exception {
+  public String save(String threeDSessionId, String clientIPAddress,
+      String msisdn, String eulaId, ConnectionMethod connectionMethod) throws Exception {
     RegisterCardRequestFactory factory = new RegisterCardRequestFactory();
     factory.setClientIPAddress(clientIPAddress);
     factory.setMsisdn(msisdn);
@@ -70,6 +70,7 @@ public class Card {
     factory.setIsDefault(isDefault);
     factory.setCardToken(cardToken);
     factory.setEulaId(eulaId);
+    factory.setThreeDSessionId(threeDSessionId);
     RegisterCardRequest request = factory.build();
 
     RegisterCardResponse response =

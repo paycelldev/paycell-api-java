@@ -1,0 +1,1052 @@
+<wsdl:definitions xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://provision.web.tpay.mf.turkcelltech.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ProvisionServicesImplService" targetNamespace="http://provision.web.tpay.mf.turkcelltech.com/">
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://provision.web.tpay.mf.turkcelltech.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://provision.web.tpay.mf.turkcelltech.com/">
+      <xs:element name="deleteCardRequest" type="tns:deleteCardRequest"></xs:element>
+      <xs:element name="deleteCardResponse" type="tns:deleteCardResponse"></xs:element>
+      <xs:element name="getCardsRequest" type="tns:getCardsRequest"></xs:element>
+      <xs:element name="getCardsResponse" type="tns:getCardsResponse"></xs:element>
+      <xs:element name="getProvisionHistoryRequest" type="tns:getProvisionHistoryRequest"></xs:element>
+      <xs:element name="getProvisionHistoryResponse" type="tns:getProvisionHistoryResponse"></xs:element>
+      <xs:element name="getTermsOfServiceContentRequest" type="tns:getTermsOfServiceContentRequest"></xs:element>
+      <xs:element name="getTermsOfServiceContentResponse" type="tns:getTermsOfServiceContentResponse"></xs:element>
+      <xs:element name="getThreeDSessionRequest" type="tns:getThreeDSessionRequest"></xs:element>
+      <xs:element name="getThreeDSessionResponse" type="tns:getThreeDSessionResponse"></xs:element>
+      <xs:element name="getThreeDSessionResultRequest" type="tns:getThreeDSessionResultRequest"></xs:element>
+      <xs:element name="getThreeDSessionResultResponse" type="tns:getThreeDSessionResultResponse"></xs:element>
+      <xs:element name="inquireForOilServiceRequest" type="tns:inquireForOilServiceRequest"></xs:element>
+      <xs:element name="inquireForOilServiceResponse" type="tns:inquireForOilServiceResponse"></xs:element>
+      <xs:element name="inquireRequest" type="tns:inquireRequest"></xs:element>
+      <xs:element name="inquireResponse" type="tns:inquireResponse"></xs:element>
+      <xs:element name="isAvailableForProvisionRequest" type="tns:isAvailableForProvisionRequest"></xs:element>
+      <xs:element name="isAvailableForProvisionResponse" type="tns:isAvailableForProvisionResponse"></xs:element>
+      <xs:element name="provisionForMarketPlaceRequest" type="tns:provisionForMarketPlaceRequest"></xs:element>
+      <xs:element name="provisionForMarketPlaceResponse" type="tns:provisionForMarketPlaceResponse"></xs:element>
+      <xs:element name="provisionForOilServiceRequest" type="tns:provisionForOilServiceRequest"></xs:element>
+      <xs:element name="provisionForOilServiceResponse" type="tns:provisionForOilServiceResponse"></xs:element>
+      <xs:element name="provisionRequest" type="tns:provisionRequest"></xs:element>
+      <xs:element name="provisionResponse" type="tns:provisionResponse"></xs:element>
+      <xs:element name="refundRequest" type="tns:refundRequest"></xs:element>
+      <xs:element name="refundResponse" type="tns:refundResponse"></xs:element>
+      <xs:element name="registerCardRequest" type="tns:registerCardRequest"></xs:element>
+      <xs:element name="registerCardResponse" type="tns:registerCardResponse"></xs:element>
+      <xs:element name="registerSubscriberRequest" type="tns:registerSubscriberRequest"></xs:element>
+      <xs:element name="registerSubscriberResponse" type="tns:registerSubscriberResponse"></xs:element>
+      <xs:element name="reverseRequest" type="tns:reverseRequest"></xs:element>
+      <xs:element name="reverseResponse" type="tns:reverseResponse"></xs:element>
+      <xs:element name="sendOTPRequest" type="tns:sendOTPRequest"></xs:element>
+      <xs:element name="sendOTPResponse" type="tns:sendOTPResponse"></xs:element>
+      <xs:element name="startProvisionRequest" type="tns:startProvisionRequest"></xs:element>
+      <xs:element name="startProvisionResponse" type="tns:startProvisionResponse"></xs:element>
+      <xs:element name="summaryReconciliationRequest" type="tns:summaryReconciliationRequest"></xs:element>
+      <xs:element name="summaryReconciliationResponse" type="tns:summaryReconciliationResponse"></xs:element>
+      <xs:element name="updateCardRequest" type="tns:updateCardRequest"></xs:element>
+      <xs:element name="updateCardResponse" type="tns:updateCardResponse"></xs:element>
+      <xs:complexType name="provisionRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="acquirerBankCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardToken" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="currency" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="installmentCount" type="xs:int"></xs:element>
+              <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="originalReferenceNumber" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="paymentType" type="tns:paymentType"></xs:element>
+              <xs:element minOccurs="0" name="pin" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="pointAmount" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="threeDSessionId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="baseInput">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="extraParameters" nillable="true" type="tns:extraParameter"></xs:element>
+          <xs:element minOccurs="0" name="requestHeader" type="tns:requestHeader"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="extraParameter">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="requestHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="applicationName" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="applicationPwd" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="clientIPAddress" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="transactionDateTime" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="transactionId" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="provisionResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="acquirerBankCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="approvalCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="issuerBankCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="iyzPaymentId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="iyzPaymentTransactionId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="orderId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="reconciliationDate" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="baseOutput">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="extraParameters" nillable="true" type="tns:extraParameter"></xs:element>
+          <xs:element minOccurs="0" name="responseHeader" type="tns:responseHeader"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="responseHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="responseCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="responseDateTime" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="responseDescription" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="transactionId" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="reverseRequest">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="extraParameters" nillable="true" type="tns:extraParameter"></xs:element>
+          <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="originalReferenceNumber" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="requestHeader" type="tns:requestHeader"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="reverseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="approvalCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="reconciliationDate" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="responseHeader" type="tns:responseHeader"></xs:element>
+          <xs:element minOccurs="0" name="retryStatusCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="retryStatusDescription" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="inquireRequest">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="extraParameters" nillable="true" type="tns:extraParameter"></xs:element>
+          <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="originalReferenceNumber" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="requestHeader" type="tns:requestHeader"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="inquireResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acquirerBankCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="orderId" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="provisionList" nillable="true" type="tns:provision"></xs:element>
+          <xs:element minOccurs="0" name="responseHeader" type="tns:responseHeader"></xs:element>
+          <xs:element minOccurs="0" name="status" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="provision">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="approvalCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="dateTime" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="provisionType" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="reconciliationDate" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="responseCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="responseDescription" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="transactionId" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="provisionForMarketPlaceRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="acquirerBankCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardToken" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="currency" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="customerEmail" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="installmentCount" type="xs:int"></xs:element>
+              <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="paymentType" type="tns:paymentType"></xs:element>
+              <xs:element minOccurs="0" name="pin" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="pointAmount" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="subMerchants" nillable="true" type="tns:subMerchant"></xs:element>
+              <xs:element minOccurs="0" name="threeDSessionId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="subMerchant">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="subMerchantKey" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="subMerchantPrice" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="provisionForMarketPlaceResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="acquirerBankCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="approvalCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="issuerBankCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="iyzPaymentId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="iyzPaymentTransactionId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="orderId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="reconciliationDate" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="startProvisionRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="applicationCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="installmentCount" type="xs:int"></xs:element>
+              <xs:element name="is3DOperation" type="xs:boolean"></xs:element>
+              <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="orderId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="startProvisionResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="issuerInfo" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="orderId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="isAvailableForProvisionRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="applicationCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="brandName" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="taosRefNum" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="isAvailableForProvisionResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="acquirerBankCode" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="deleteCardRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cardId" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="extraParameters" nillable="true" type="tns:extraParameter"></xs:element>
+          <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="requestHeader" type="tns:requestHeader"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteCardResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="responseHeader" type="tns:responseHeader"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getTermsOfServiceContentRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence></xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getTermsOfServiceContentResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="eulaId" type="xs:long"></xs:element>
+              <xs:element minOccurs="0" name="termsOfServiceHtmlContentEN" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="termsOfServiceHtmlContentTR" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="sendOTPRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="cardId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardToken" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="sendOTPResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="otpValidationId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="regEx" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="summaryReconciliationRequest">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="extraParameters" nillable="true" type="tns:extraParameter"></xs:element>
+          <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="reconciliationDate" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="requestHeader" type="tns:requestHeader"></xs:element>
+          <xs:element minOccurs="0" name="totalPostAuthAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalPostAuthCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalPostAuthReverseAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalPostAuthReverseCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalPreAuthAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalPreAuthCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalPreAuthReverseAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalPreAuthReverseCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalRefundAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalRefundCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalReverseAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalReverseCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalSaleAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalSaleCount" type="xs:int"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="summaryReconciliationResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="extraParameters" nillable="true" type="tns:extraParameter"></xs:element>
+          <xs:element minOccurs="0" name="reconciliationDate" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="reconciliationResult" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="responseHeader" type="tns:responseHeader"></xs:element>
+          <xs:element minOccurs="0" name="totalPostAuthAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalPostAuthCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalPostAuthReverseAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalPostAuthReverseCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalPreAuthAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalPreAuthCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalPreAuthReverseAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalPreAuthReverseCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalRefundAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalRefundCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalReverseAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalReverseCount" type="xs:int"></xs:element>
+          <xs:element minOccurs="0" name="totalSaleAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="totalSaleCount" type="xs:int"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="registerSubscriberRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="loyaltyCard" type="tns:loyaltyCard"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="plate" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="loyaltyCard">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brand" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="loyaltyCardNumber" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="registerSubscriberResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence></xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="updateCardRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="alias" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="eulaId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="isDefault" type="xs:boolean"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="otp" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="otpValidationId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="threeDSessionId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="updateCardResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence></xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="inquireForOilServiceRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="taosRefNum" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="inquireForOilServiceResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="provisionType" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="resultCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="resultDescription" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="status" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getThreeDSessionResultRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="threeDSessionId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getThreeDSessionResultResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="currentStep" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="mdErrorMessage" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="mdStatus" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="threeDOperationResult" type="tns:threeDOperationResult"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="threeDOperationResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="threeDResult" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="threeDResultDescription" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getCardsRequest">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="extraParameters" nillable="true" type="tns:extraParameter"></xs:element>
+          <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="requestHeader" type="tns:requestHeader"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getCardsResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="cardList" nillable="true" type="tns:card"></xs:element>
+              <xs:element minOccurs="0" name="eulaId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="card">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="activationDate" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="alias" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="cardBrand" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="cardId" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="isDefault" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="isExpired" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="isOTPValidated" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="isThreeDValidated" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="maskedCardNo" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="showEulaId" type="xs:boolean"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="refundRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="extraParameters" nillable="true" type="tns:extraParameter"></xs:element>
+          <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="originalReferenceNumber" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="pointAmount" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="requestHeader" type="tns:requestHeader"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="refundResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="approvalCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="reconciliationDate" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="responseHeader" type="tns:responseHeader"></xs:element>
+          <xs:element minOccurs="0" name="retryStatusCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="retryStatusDescription" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="registerCardRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="alias" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardToken" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="eulaId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="isDefault" type="xs:boolean"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="otp" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="otpValidationId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="threeDSessionId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="registerCardResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="cardId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getThreeDSessionRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardToken" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="installmentCount" type="xs:int"></xs:element>
+              <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="target" type="tns:target"></xs:element>
+              <xs:element minOccurs="0" name="transactionType" type="tns:transactionType"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getThreeDSessionResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="threeDSessionId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getProvisionHistoryRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="merchantCode" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="partitionNo" type="xs:int"></xs:element>
+              <xs:element minOccurs="0" name="reconciliationDate" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getProvisionHistoryResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="nextPartitionNo" type="xs:int"></xs:element>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="transactionList" nillable="true" type="tns:transaction"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="transaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="acquirerBankCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="amount" type="xs:decimal"></xs:element>
+          <xs:element minOccurs="0" name="approvalCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="issuerBankCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="netAmount" type="xs:decimal"></xs:element>
+          <xs:element minOccurs="0" name="orderId" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="transactionDateTime" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="transactionId" type="xs:string"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="transactionParams" nillable="true" type="tns:transactionParam"></xs:element>
+          <xs:element minOccurs="0" name="transactionType" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="transactionParam">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="provisionForOilServiceRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:baseInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="cardId" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="cardToken" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="msisdn" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="referenceNumber" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="taosRefNum" type="xs:string"></xs:element>
+              <xs:element minOccurs="0" name="threeDSessionId" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="provisionForOilServiceResponse">
+        <xs:complexContent>
+          <xs:extension base="tns:baseOutput">
+            <xs:sequence></xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:simpleType name="paymentType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PREAUTH"></xs:enumeration>
+          <xs:enumeration value="POSTAUTH"></xs:enumeration>
+          <xs:enumeration value="SALE"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="target">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PAYCELL"></xs:enumeration>
+          <xs:enumeration value="MERCHANT"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="transactionType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PREAUTH"></xs:enumeration>
+          <xs:enumeration value="AUTH"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="provision" nillable="true" type="tns:provisionRequest"></xs:element>
+      <xs:element name="reverse" nillable="true" type="tns:reverseRequest"></xs:element>
+      <xs:element name="inquire" nillable="true" type="tns:inquireRequest"></xs:element>
+      <xs:element name="provisionForMarketPlace" nillable="true" type="tns:provisionForMarketPlaceRequest"></xs:element>
+      <xs:element name="startProvision" nillable="true" type="tns:startProvisionRequest"></xs:element>
+      <xs:element name="isAvailableForProvision" nillable="true" type="tns:isAvailableForProvisionRequest"></xs:element>
+      <xs:element name="deleteCard" nillable="true" type="tns:deleteCardRequest"></xs:element>
+      <xs:element name="getTermsOfServiceContent" nillable="true" type="tns:getTermsOfServiceContentRequest"></xs:element>
+      <xs:element name="sendOTP" nillable="true" type="tns:sendOTPRequest"></xs:element>
+      <xs:element name="summaryReconciliation" nillable="true" type="tns:summaryReconciliationRequest"></xs:element>
+      <xs:element name="registerSubscriber" nillable="true" type="tns:registerSubscriberRequest"></xs:element>
+      <xs:element name="updateCard" nillable="true" type="tns:updateCardRequest"></xs:element>
+      <xs:element name="inquireForOilService" nillable="true" type="tns:inquireForOilServiceRequest"></xs:element>
+      <xs:element name="getThreeDSessionResult" nillable="true" type="tns:getThreeDSessionResultRequest"></xs:element>
+      <xs:element name="getCards" nillable="true" type="tns:getCardsRequest"></xs:element>
+      <xs:element name="refund" nillable="true" type="tns:refundRequest"></xs:element>
+      <xs:element name="registerCard" nillable="true" type="tns:registerCardRequest"></xs:element>
+      <xs:element name="getThreeDSession" nillable="true" type="tns:getThreeDSessionRequest"></xs:element>
+      <xs:element name="getProvisionHistory" nillable="true" type="tns:getProvisionHistoryRequest"></xs:element>
+      <xs:element name="provisionForOilService" nillable="true" type="tns:provisionForOilServiceRequest"></xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="provision">
+    <wsdl:part element="tns:provision" name="provision"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="provisionResponse">
+    <wsdl:part element="tns:provisionResponse" name="provisionResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reverse">
+    <wsdl:part element="tns:reverse" name="reverse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reverseResponse">
+    <wsdl:part element="tns:reverseResponse" name="reverseResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inquire">
+    <wsdl:part element="tns:inquire" name="inquire"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inquireResponse">
+    <wsdl:part element="tns:inquireResponse" name="inquireResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="provisionForMarketPlace">
+    <wsdl:part element="tns:provisionForMarketPlace" name="provisionForMarketPlace"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="provisionForMarketPlaceResponse">
+    <wsdl:part element="tns:provisionForMarketPlaceResponse" name="provisionForMarketPlaceResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startProvision">
+    <wsdl:part element="tns:startProvision" name="startProvision"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startProvisionResponse">
+    <wsdl:part element="tns:startProvisionResponse" name="startProvisionResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isAvailableForProvision">
+    <wsdl:part element="tns:isAvailableForProvision" name="isAvailableForProvision"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isAvailableForProvisionResponse">
+    <wsdl:part element="tns:isAvailableForProvisionResponse" name="isAvailableForProvisionResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCard">
+    <wsdl:part element="tns:deleteCard" name="deleteCard"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCardResponse">
+    <wsdl:part element="tns:deleteCardResponse" name="deleteCardResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTermsOfServiceContent">
+    <wsdl:part element="tns:getTermsOfServiceContent" name="getTermsOfServiceContent"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTermsOfServiceContentResponse">
+    <wsdl:part element="tns:getTermsOfServiceContentResponse" name="getTermsOfServiceContentResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendOTP">
+    <wsdl:part element="tns:sendOTP" name="sendOTP"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendOTPResponse">
+    <wsdl:part element="tns:sendOTPResponse" name="sendOTPResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="summaryReconciliation">
+    <wsdl:part element="tns:summaryReconciliation" name="summaryReconciliation"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="summaryReconciliationResponse">
+    <wsdl:part element="tns:summaryReconciliationResponse" name="summaryReconciliationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerSubscriber">
+    <wsdl:part element="tns:registerSubscriber" name="registerSubscriber"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerSubscriberResponse">
+    <wsdl:part element="tns:registerSubscriberResponse" name="registerSubscriberResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCard">
+    <wsdl:part element="tns:updateCard" name="updateCard"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCardResponse">
+    <wsdl:part element="tns:updateCardResponse" name="updateCardResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inquireForOilService">
+    <wsdl:part element="tns:inquireForOilService" name="inquireForOilService"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inquireForOilServiceResponse">
+    <wsdl:part element="tns:inquireForOilServiceResponse" name="inquireForOilServiceResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getThreeDSessionResult">
+    <wsdl:part element="tns:getThreeDSessionResult" name="getThreeDSessionResult"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getThreeDSessionResultResponse">
+    <wsdl:part element="tns:getThreeDSessionResultResponse" name="getThreeDSessionResultResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCards">
+    <wsdl:part element="tns:getCards" name="getCards"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCardsResponse">
+    <wsdl:part element="tns:getCardsResponse" name="getCardsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="refund">
+    <wsdl:part element="tns:refund" name="refund"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="refundResponse">
+    <wsdl:part element="tns:refundResponse" name="refundResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerCard">
+    <wsdl:part element="tns:registerCard" name="registerCard"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerCardResponse">
+    <wsdl:part element="tns:registerCardResponse" name="registerCardResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getThreeDSession">
+    <wsdl:part element="tns:getThreeDSession" name="getThreeDSession"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getThreeDSessionResponse">
+    <wsdl:part element="tns:getThreeDSessionResponse" name="getThreeDSessionResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProvisionHistory">
+    <wsdl:part element="tns:getProvisionHistory" name="getProvisionHistory"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProvisionHistoryResponse">
+    <wsdl:part element="tns:getProvisionHistoryResponse" name="getProvisionHistoryResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="provisionForOilService">
+    <wsdl:part element="tns:provisionForOilService" name="provisionForOilService"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="provisionForOilServiceResponse">
+    <wsdl:part element="tns:provisionForOilServiceResponse" name="provisionForOilServiceResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProvisionService">
+    <wsdl:operation name="provision">
+      <wsdl:input message="tns:provision" name="provision"></wsdl:input>
+      <wsdl:output message="tns:provisionResponse" name="provisionResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reverse">
+      <wsdl:input message="tns:reverse" name="reverse"></wsdl:input>
+      <wsdl:output message="tns:reverseResponse" name="reverseResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inquire">
+      <wsdl:input message="tns:inquire" name="inquire"></wsdl:input>
+      <wsdl:output message="tns:inquireResponse" name="inquireResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="provisionForMarketPlace">
+      <wsdl:input message="tns:provisionForMarketPlace" name="provisionForMarketPlace"></wsdl:input>
+      <wsdl:output message="tns:provisionForMarketPlaceResponse" name="provisionForMarketPlaceResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startProvision">
+      <wsdl:input message="tns:startProvision" name="startProvision"></wsdl:input>
+      <wsdl:output message="tns:startProvisionResponse" name="startProvisionResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isAvailableForProvision">
+      <wsdl:input message="tns:isAvailableForProvision" name="isAvailableForProvision"></wsdl:input>
+      <wsdl:output message="tns:isAvailableForProvisionResponse" name="isAvailableForProvisionResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteCard">
+      <wsdl:input message="tns:deleteCard" name="deleteCard"></wsdl:input>
+      <wsdl:output message="tns:deleteCardResponse" name="deleteCardResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTermsOfServiceContent">
+      <wsdl:input message="tns:getTermsOfServiceContent" name="getTermsOfServiceContent"></wsdl:input>
+      <wsdl:output message="tns:getTermsOfServiceContentResponse" name="getTermsOfServiceContentResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendOTP">
+      <wsdl:input message="tns:sendOTP" name="sendOTP"></wsdl:input>
+      <wsdl:output message="tns:sendOTPResponse" name="sendOTPResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="summaryReconciliation">
+      <wsdl:input message="tns:summaryReconciliation" name="summaryReconciliation"></wsdl:input>
+      <wsdl:output message="tns:summaryReconciliationResponse" name="summaryReconciliationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerSubscriber">
+      <wsdl:input message="tns:registerSubscriber" name="registerSubscriber"></wsdl:input>
+      <wsdl:output message="tns:registerSubscriberResponse" name="registerSubscriberResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateCard">
+      <wsdl:input message="tns:updateCard" name="updateCard"></wsdl:input>
+      <wsdl:output message="tns:updateCardResponse" name="updateCardResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inquireForOilService">
+      <wsdl:input message="tns:inquireForOilService" name="inquireForOilService"></wsdl:input>
+      <wsdl:output message="tns:inquireForOilServiceResponse" name="inquireForOilServiceResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getThreeDSessionResult">
+      <wsdl:input message="tns:getThreeDSessionResult" name="getThreeDSessionResult"></wsdl:input>
+      <wsdl:output message="tns:getThreeDSessionResultResponse" name="getThreeDSessionResultResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCards">
+      <wsdl:input message="tns:getCards" name="getCards"></wsdl:input>
+      <wsdl:output message="tns:getCardsResponse" name="getCardsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="refund">
+      <wsdl:input message="tns:refund" name="refund"></wsdl:input>
+      <wsdl:output message="tns:refundResponse" name="refundResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerCard">
+      <wsdl:input message="tns:registerCard" name="registerCard"></wsdl:input>
+      <wsdl:output message="tns:registerCardResponse" name="registerCardResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getThreeDSession">
+      <wsdl:input message="tns:getThreeDSession" name="getThreeDSession"></wsdl:input>
+      <wsdl:output message="tns:getThreeDSessionResponse" name="getThreeDSessionResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProvisionHistory">
+      <wsdl:input message="tns:getProvisionHistory" name="getProvisionHistory"></wsdl:input>
+      <wsdl:output message="tns:getProvisionHistoryResponse" name="getProvisionHistoryResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="provisionForOilService">
+      <wsdl:input message="tns:provisionForOilService" name="provisionForOilService"></wsdl:input>
+      <wsdl:output message="tns:provisionForOilServiceResponse" name="provisionForOilServiceResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProvisionServicesImplServiceSoapBinding" type="tns:ProvisionService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="provision">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="provision">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="provisionResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inquire">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="inquire">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="inquireResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reverse">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="reverse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="reverseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="provisionForMarketPlace">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="provisionForMarketPlace">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="provisionForMarketPlaceResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startProvision">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="startProvision">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="startProvisionResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isAvailableForProvision">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="isAvailableForProvision">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="isAvailableForProvisionResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteCard">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="deleteCard">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="deleteCardResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTermsOfServiceContent">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getTermsOfServiceContent">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getTermsOfServiceContentResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendOTP">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="sendOTP">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="sendOTPResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="summaryReconciliation">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="summaryReconciliation">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="summaryReconciliationResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerSubscriber">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="registerSubscriber">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="registerSubscriberResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateCard">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateCard">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateCardResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inquireForOilService">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="inquireForOilService">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="inquireForOilServiceResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getThreeDSessionResult">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getThreeDSessionResult">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getThreeDSessionResultResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCards">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getCards">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getCardsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="refund">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="refund">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="refundResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getThreeDSession">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getThreeDSession">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getThreeDSessionResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerCard">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="registerCard">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="registerCardResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProvisionHistory">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getProvisionHistory">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getProvisionHistoryResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="provisionForOilService">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="provisionForOilService">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="provisionForOilServiceResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProvisionServicesImplService">
+    <wsdl:port binding="tns:ProvisionServicesImplServiceSoapBinding" name="ProvisionServicesImplPort">
+      <soap:address location="https://tpay-test.turkcell.com.tr:443/tpay/provision/services/ws"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

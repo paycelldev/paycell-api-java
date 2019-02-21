@@ -72,8 +72,8 @@ public class Account {
   }
 
   public void registerCard(Card card, String eulaId,
-      String clientIpAddress, ConnectionMethod connectionMethod) throws Exception {
-    card.save(clientIpAddress, getMsisdn(), eulaId, connectionMethod);
+      String threeDSessionId, String clientIpAddress, ConnectionMethod connectionMethod) throws Exception {
+    card.save(threeDSessionId, clientIpAddress, getMsisdn(), eulaId, connectionMethod);
     loadCards(clientIpAddress, connectionMethod);
   }
 
@@ -109,11 +109,11 @@ public class Account {
   }
 
   public String provision(Provision provision, String cardId, String cardToken,
-      String clientIPAddress, ConnectionMethod connectionMethod) throws Exception {
+      String threeDSessionId, String clientIPAddress, ConnectionMethod connectionMethod) throws Exception {
     if (cardId != null) {
-      return provision.provision(clientIPAddress, getMsisdn(), cardId, cardToken, connectionMethod);
+      return provision.provision(threeDSessionId, clientIPAddress, getMsisdn(), cardId, cardToken, connectionMethod);
     } else {
-      return provision.provision(clientIPAddress, getMsisdn(), null, cardToken, connectionMethod);
+      return provision.provision(threeDSessionId, clientIPAddress, getMsisdn(), null, cardToken, connectionMethod);
     }
   }
 

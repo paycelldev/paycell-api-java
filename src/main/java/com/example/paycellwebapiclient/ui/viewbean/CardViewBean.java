@@ -171,7 +171,10 @@ public class CardViewBean extends BaseViewBean
       card.setCvcNo(cardRegisterViewDto.getCvcNo());
       card.setIsDefault(cardRegisterViewDto.getIsDefault());
       card.setCardToken(cardToken);
-      account.registerCard(card, getTermsOfServiceContentViewDto().getEulaId(),
+      account.registerCard(
+          card,
+          getTermsOfServiceContentViewDto().getEulaId(),
+          threeDSession != null ? threeDSession.getThreeDSessionId() : null,
           getClientIPAddress(), enumConnectionMethod());
       info("Registered successfully.");
       queryCards();
@@ -284,13 +287,24 @@ public class CardViewBean extends BaseViewBean
   private void sendProvision(String cardToken) {
     Provision provision = webApplicationContext.getBean(Provision.class);
     BeanUtils.copyProperties(provisionViewDto, provision);
-    provision.setPaymentType(PaymentType.fromValue(provisionViewDto.getPaymentType()));
+    provision.setPaymentType(PaymentType.fromValue(provisionViewDto.getPaymentType().toUpperCase()));
+    provision.setInstallmentCount(Integer.valueOf(provisionViewDto.getInstallmentCount()));
     try {
       if (isRegisteredCardAvailable()) {
-        account.provision(provision, cardQueryViewDto.getSelectedCard().getCardId(),
-            cardToken, getClientIPAddress(), enumConnectionMethod());
+        account.provision(
+            provision,
+            cardQueryViewDto.getSelectedCard().getCardId(),
+            cardToken,
+            threeDSession != null ? threeDSession.getThreeDSessionId() : null,
+            getClientIPAddress(),
+            enumConnectionMethod());
       } else {
-        account.provision(provision, null, cardToken, getClientIPAddress(),
+        account.provision(
+            provision,
+            null,
+            cardToken,
+            threeDSession != null ? threeDSession.getThreeDSessionId() : null,
+            getClientIPAddress(),
             enumConnectionMethod());
       }
       provisionViewDto.setReferenceNumber(provision.getReferenceNumber());
@@ -414,7 +428,9 @@ public class CardViewBean extends BaseViewBean
         webApplicationContext.getBean(ProvisionForMarketPlace.class);
     BeanUtils.copyProperties(provisionForMarketPlaceViewDto, provisionForMarketPlace);
     provisionForMarketPlace.setPaymentType(
-        PaymentType.fromValue(provisionForMarketPlaceViewDto.getPaymentType()));
+        PaymentType.fromValue(provisionForMarketPlaceViewDto.getPaymentType().toUpperCase()));
+    provisionForMarketPlace.setInstallmentCount(Integer.valueOf(provisionForMarketPlaceViewDto.getInstallmentCount()));
+
     for (ExtraParameterViewDto extraParameterViewDto : provisionForMarketPlaceViewDto
         .getExtraParameterList()) {
       if (StringUtils.isNoneBlank(extraParameterViewDto.getKey(),
@@ -568,6 +584,16 @@ public class CardViewBean extends BaseViewBean
           Integer.valueOf(summaryReconciliationViewDto.getTotalReverseCount()));
       summaryReconciliation.setTotalRefundCount(
           Integer.valueOf(summaryReconciliationViewDto.getTotalRefundCount()));
+      summaryReconciliation.setTotalPostAuthAmount(summaryReconciliationViewDto.getTotalPostAuthAmount());
+      summaryReconciliation.setTotalPostAuthCount(summaryReconciliationViewDto.getTotalPostAuthCount());
+      summaryReconciliation.setTotalPostAuthReverseAmount(summaryReconciliationViewDto.getTotalPostAuthReverseAmount());
+      summaryReconciliation.setTotalPostAuthReverseCount(summaryReconciliationViewDto.getTotalPostAuthReverseCount());
+      summaryReconciliation.setTotalPreAuthAmount(summaryReconciliationViewDto.getTotalPreAuthAmount());
+      summaryReconciliation.setTotalPreAuthCount(summaryReconciliationViewDto.getTotalPreAuthCount());
+      summaryReconciliation.setTotalPreAuthReverseAmount(summaryReconciliationViewDto.getTotalPreAuthReverseAmount());
+      summaryReconciliation.setTotalPreAuthReverseCount(summaryReconciliationViewDto.getTotalPreAuthReverseCount());
+
+      //Check summary reconciliation
       summaryReconciliation.summaryReconciliation(getClientIPAddress(),
           enumConnectionMethod());
 
