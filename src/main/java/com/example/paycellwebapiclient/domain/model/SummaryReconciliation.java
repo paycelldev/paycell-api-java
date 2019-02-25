@@ -111,13 +111,13 @@ public class SummaryReconciliation {
       setResponseTotalReverseCount(response.getTotalReverseCount());
       setResponseTotalRefundCount(response.getTotalRefundCount());
       setResponseTotalPostAuthAmount(response.getTotalPostAuthAmount());
-      setResponseTotalPostAuthCount(response.getTotalPostAuthCount().toString());
+      setResponseTotalPostAuthCount(response.getTotalPostAuthCount() != null ? response.getTotalPostAuthCount().toString() : null);
       setResponseTotalPostAuthReverseAmount(response.getTotalPostAuthReverseAmount());
-      setResponseTotalPostAuthReverseCount(response.getTotalPostAuthReverseCount().toString());
+      setResponseTotalPostAuthReverseCount(response.getTotalPostAuthReverseCount() != null ? response.getTotalPostAuthReverseCount().toString() : null);
       setResponseTotalPreAuthAmount(response.getTotalPreAuthAmount());
-      setResponseTotalPreAuthCount(response.getTotalPreAuthCount().toString());
+      setResponseTotalPreAuthCount(response.getTotalPreAuthCount() != null ? response.getTotalPreAuthCount().toString() : null);
       setResponseTotalPreAuthReverseAmount(response.getTotalPreAuthReverseAmount());
-      setResponseTotalPreAuthReverseCount(response.getTotalPreAuthReverseCount().toString());
+      setResponseTotalPreAuthReverseCount(response.getTotalPreAuthReverseCount() != null ? response.getTotalPreAuthReverseCount().toString() : null);
     } else {
       throw new Exception(
           "Bad Request: " + response.getResponseHeader().getResponseDescription());

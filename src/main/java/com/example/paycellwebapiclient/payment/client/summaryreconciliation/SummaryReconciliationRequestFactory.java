@@ -2,6 +2,7 @@ package com.example.paycellwebapiclient.payment.client.summaryreconciliation;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import com.example.paycellwebapiclient.common.util.PaycellWebApiConstants;
 import com.example.paycellwebapiclient.common.util.UniqueIdGenerator;
 import com.turkcelltech.mf.tpay.web.provision.RequestHeader;
@@ -128,7 +129,10 @@ public class SummaryReconciliationRequestFactory {
    */
   public SummaryReconciliationRequestFactory setTotalPostAuthAmount(
       String totalPostAuthAmount) {
-    request.setTotalPostAuthAmount(totalPostAuthAmount);
+	  
+	  if (!totalPostAuthAmount.isEmpty()) {
+		  request.setTotalPostAuthAmount(totalPostAuthAmount);
+	  }
     return this;
   }
 
@@ -140,7 +144,10 @@ public class SummaryReconciliationRequestFactory {
    */
   public SummaryReconciliationRequestFactory setTotalPostAuthReverseAmount(
       String totalPostAuthReverseAmount) {
-    request.setTotalPostAuthReverseAmount(totalPostAuthReverseAmount);
+
+	  if (!totalPostAuthReverseAmount.isEmpty()) {
+		  request.setTotalPostAuthReverseAmount(totalPostAuthReverseAmount);
+	  }
     return this;
   }
 
@@ -152,7 +159,10 @@ public class SummaryReconciliationRequestFactory {
    */
   public SummaryReconciliationRequestFactory setTotalPreAuthAmount(
       String totalPreAuthAmount) {
-    request.setTotalPreAuthAmount(totalPreAuthAmount);
+
+	  if (!totalPreAuthAmount.isEmpty()) {
+		  request.setTotalPreAuthAmount(totalPreAuthAmount);
+	  }
     return this;
   }
 
@@ -164,7 +174,10 @@ public class SummaryReconciliationRequestFactory {
    */
   public SummaryReconciliationRequestFactory setTotalPreAuthReverseAmount(
       String totalPreAuthReverseAmount) {
-    request.setTotalPostAuthReverseAmount(totalPreAuthReverseAmount);
+
+	  if (!totalPreAuthReverseAmount.isEmpty()) {
+		  request.setTotalPostAuthReverseAmount(totalPreAuthReverseAmount);
+	  }
     return this;
   }
 
@@ -176,7 +189,10 @@ public class SummaryReconciliationRequestFactory {
    */
   public SummaryReconciliationRequestFactory setTotalPostAuthCount(
       String totalPostAuthCount) {
-    request.setTotalPostAuthCount(Integer.valueOf(totalPostAuthCount));
+
+	  if (totalPostAuthCount != null && !totalPostAuthCount.isEmpty()) {
+		  request.setTotalPostAuthCount(Integer.valueOf(totalPostAuthCount));
+	  }
     return this;
   }
 
@@ -188,7 +204,10 @@ public class SummaryReconciliationRequestFactory {
    */
   public SummaryReconciliationRequestFactory setTotalPostAuthReverseCount(
       String totalPostAuthReverseCount) {
-    request.setTotalPostAuthReverseCount(Integer.valueOf(totalPostAuthReverseCount));
+	  
+	  if (totalPostAuthReverseCount != null && !totalPostAuthReverseCount.isEmpty()) {
+		  request.setTotalPostAuthReverseCount(Integer.valueOf(totalPostAuthReverseCount));
+	  }
     return this;
   }
 
@@ -200,7 +219,11 @@ public class SummaryReconciliationRequestFactory {
    */
   public SummaryReconciliationRequestFactory setTotalPreAuthCount(
       String totalPreAuthCount) {
-    request.setTotalPreAuthCount(Integer.valueOf(totalPreAuthCount));
+	  
+
+	  if (totalPreAuthCount != null && !totalPreAuthCount.isEmpty()) {
+		  request.setTotalPreAuthCount(Integer.valueOf(totalPreAuthCount));
+	  }
     return this;
   }
 
@@ -211,7 +234,10 @@ public class SummaryReconciliationRequestFactory {
    * @return
    */
   public SummaryReconciliationRequestFactory setTotalPreAuthReverseCount(String totalPreAuthReverseCount) {
-    request.setTotalPreAuthReverseCount(Integer.valueOf(totalPreAuthReverseCount));
+
+	  if (totalPreAuthReverseCount != null && !totalPreAuthReverseCount.isEmpty()) {
+		  request.setTotalPreAuthReverseCount(Integer.valueOf(totalPreAuthReverseCount));
+	  }
     return this;
   }
 

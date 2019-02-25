@@ -52,7 +52,7 @@ public class SummaryReconciliationSoapClient
     SummaryReconciliationResponse response = new SummaryReconciliationResponse();
     response.getExtraParameters().addAll(extraParameters.value);
     response.setReconciliationDate(reconciliationDate.value);
-    response.setTotalPostAuthReverseAmount(totalPostAuthAmount.value);
+    response.setTotalPostAuthAmount(totalPostAuthAmount.value);
     response.setTotalPostAuthCount(totalPostAuthCount.value);
     response.setTotalPostAuthReverseAmount(totalPostAuthReverseAmount.value);
     response.setTotalPostAuthReverseCount(totalPostAuthReverseCount.value);
